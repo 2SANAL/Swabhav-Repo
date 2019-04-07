@@ -1,0 +1,5 @@
+version control/source control
+'git' is tool to source control
+repositry contain project sanpshort .file
+thos sanpshort reperesent as 'comment '
+it maintent as timeline call branch 
