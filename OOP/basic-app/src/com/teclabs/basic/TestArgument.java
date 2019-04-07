@@ -3,9 +3,14 @@ package com.teclabs.basic;
 public class TestArgument {
 
 	public static void main(String[] args) {
-		System.err.println("Array size "+args.length);
-		System.err.println("args[0] "+args[0]);
-		System.err.println("args[1]"+args[1]);
-		System.err.println("args[2]"+args[2]);	
+		int len = args.length;
+		if (len == 0) {
+			System.out.println("Thank you");
+		} else {
+			for (int i = 0; i < len; i++) {
+				System.out.println("Hello " + args[i]);
+			}
+		}
+
 	}
 }
