@@ -3,3 +3,13 @@ version control/source control
 repositry contain project sanpshort .file
 thos sanpshort reperesent as 'comment '
 it maintent as timeline call branch 
+
+Steps git:1) right click on those folder where we want create branch
+2)select "GIt BAsh here"
+Types on git BAsh terminal
+3)git init
+4)notepad hello.txt
+5)git log
+6)git status
+7)git add .
+8)git commit -m "message write"
