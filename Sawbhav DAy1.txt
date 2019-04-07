@@ -13,3 +13,5 @@ Types on git BAsh terminal
 6)git status
 7)git add .
 8)git commit -m "message write"
+9)git checkout HAsh(e.g. git ckeckout 8bc116d9340bdc4d98435e247e1857a68364af8f)
+
