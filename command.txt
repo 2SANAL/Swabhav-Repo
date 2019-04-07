@@ -1,0 +1,14 @@
+1)git init
+notepad hello.txt
+2)git log
+3)git status
+4) git add .
+5)git commit -m "message write"
+6) git checkout HAsh(e.g. git ckeckout 8bc116d9340bdc4d98435e247e1857a68364af8f)
+
+
+
+upload on cloude :
+        git remote -v
+        git remote add swabhav {url} //Swabhav is name simple
+        git push swabhav master// master is all parent in git 
