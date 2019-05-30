@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace RectangleEncapApp
 {
@@ -9,6 +6,8 @@ namespace RectangleEncapApp
     {
         private int _height;
         private int _width;
+        private readonly int lowerBound = 0;
+        private readonly int uperBound = 100;
 
         public int GetHight()
         {
@@ -20,28 +19,27 @@ namespace RectangleEncapApp
         }
         public void SetWidth(int width)
         {
-           
-            this._width = width;
-            if (width <= 0)
-            {
-                this._width = 1;
-            }
-            else if (width >= 100)
-            {
-                this._width = 100;
-            }
+            this._width = CheckCondition(width);
         }
-        public void SetHeight(int height) {
-            this._height = height;
-            if (height <= 0)
-            {
-                this._height = 1;
-            }
-            else if (height >= 100)
-            {
-                this._height = 100;
-            }
+
+        public void SetHeight(int height)
+        {
+            this._height = CheckCondition(height);
         }
+
+        int CheckCondition(int value)
+        {
+            if (value <= lowerBound)
+            {
+                value = 1;
+            }
+            else if (value >= uperBound)
+            {
+                value = 100;
+            }
+            return value;
+        }
+
         public int CalculateArea()
         {
             return _width * _height;

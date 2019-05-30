@@ -16,7 +16,7 @@ namespace RectangleEncapApp
             Big.SetWidth(101);
             Big.SetHeight(20);
 
-            Console.WriteLine("Small Rectangle Hight "+ small.GetHight()+ " Small Rectangle width " + small.GetWidth()+ " Area of Small "+small.CalculateArea());
+            Console.WriteLine("Small Rectangle Hight " + small.GetHight() + " Small Rectangle width " + small.GetWidth() + " Area of Small " + small.CalculateArea());
             Console.WriteLine("Big Rectangle Hight " + Big.GetHight() + " Big Rectangle width " + Big.GetWidth() + " Area of Big " + Big.CalculateArea());
 
         }
