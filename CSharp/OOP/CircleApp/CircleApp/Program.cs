@@ -6,6 +6,14 @@ namespace CircleApp
     {
         static void Main(string[] args)
         {
+           // NewMethod();
+            Console.WriteLine(new Circle().CalArea());
+            printInfo(new Circle());
+
+        }
+
+        private static void NewMethod()
+        {
             Circle small = new Circle();
             Circle big = new Circle();
 
@@ -20,7 +28,10 @@ namespace CircleApp
             Console.WriteLine(small.Redius);
             printInfo(small);
             printInfo(big);
+
+            
         }
+
         static void printInfo(Circle obj)
         {
             Console.WriteLine("Circle Redius " + obj.Redius + " and Area " + obj.CalArea());
