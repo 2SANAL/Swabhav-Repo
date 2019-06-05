@@ -7,22 +7,17 @@ namespace RickGuitarAPP
 {
     class Guitar
     {
-        private string _serialNumber, _model;
-        Type _type;
-        Wood _topWood, _backWood; 
-        Builder _builder;
+        private string _serialNumber;
         private double _price;
+        private GuitarSpec _spec;
        
 
-        public Guitar(string _serialNumber,Builder _builder, string _model, Type _type, Wood _topWood, Wood _backWood,  double _price)
+        public Guitar(string _serialNumber,  double _price,GuitarSpec _spec)
         {
             this._serialNumber = _serialNumber;
-            this._model = _model;
-            this._type = _type;
-            this._topWood = _topWood;
-            this._backWood = _backWood;
             this._price = _price;
-            this._builder = _builder;
+            this._spec = _spec;
+            
         }
 
         
@@ -35,26 +30,15 @@ namespace RickGuitarAPP
         {
             return _price;
         }
-        public Builder GetBuilder()
+        public void setPrice(double p)
         {
-            return _builder;
+            _price = p;
         }
-        public string GetModel()
+     
+        public GuitarSpec getSpec()
         {
-            return _model;
-        }
-        public Type GetType()
-        {
-            return _type;
-        }
-        public Wood GetBackWood()
-        {
-            return _backWood;
-        }
-        public Wood GetTopWood()
-        {
-            return _topWood;
-        }
+            return _spec;
+        }      
 
 
     }

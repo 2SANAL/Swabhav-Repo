@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 
@@ -7,31 +7,36 @@ namespace RickGuitarAPP
 {
     class Program
     {
-        
-       
-        
-    static void Main(string[] args)
+
+
+
+        static void Main(string[] args)
         {
             Inventory inventory = new Inventory();
-            
-            
-            //inventory.AddGuitar("V95693",Builder.FRENDER.ToString(), "stratocastor",Type.ACOUSTIC.ToString(),Wood.BRAZILIAN.ToString(),Wood.BRAZILIAN.ToString(),1499.5);
-            Guitar whatErinLikes = new Guitar("", Builder.FRENDER, "stratocastor", Type.ACOUSTIC, Wood.BRAZILIAN, Wood.BRAZILIAN, 1499.5);
-            
-           List< Guitar> guitar = inventory.search(whatErinLikes);
-            if(guitar !=null)
-            {
-                Console.WriteLine("Erin you ust like this " +
-                    guitar.GetBuilder() + " " + guitar.GetModel() + " " + guitar.GetType() + " guitar: \n " + guitar.GetBackWood() +
-                    " Back  and sides \n" + guitar.GetTopWood() + " top .\n You have it for only $ " + guitar.GetPrice());
-           
+            InitializeInventroy(inventory);
+            GuitarSpec whatErinLikes = new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, 12, Wood.ALDER, Wood.ALDER);
+            ArrayList matchingGuitars = inventory.Search(whatErinLikes);
 
+            if (matchingGuitars.Count >= 0)
+            {
+                Console.WriteLine("Erin,you might like these guitars:");
+                foreach (Guitar guitar in matchingGuitars)
+                {
+                    GuitarSpec spec = guitar.getSpec();
+                    Console.WriteLine("We have a " + spec.GetBuilder() + " " + spec.GetModel() + " " + spec.Getnumstring() + " String " +
+                        spec.Gettype() + " guitar:\n    " +
+                        spec.GetBackwood() + " back and sides,\n    " +
+                        spec.GetTopwood() + " top. \n You cac have it for only $" +
+                        guitar.GetPrice() + "!\n  ----");
+                }
             }
             else
-            {
-                Console.WriteLine("Srroy , Erin nothin for you");
-            }
+                Console.WriteLine("Sorry, Erin We have nothing for you!");
         }
-
+        static void InitializeInventroy(Inventory inventory)
+        {
+            inventory.AddGuitar("V9569", 1499.95, new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, 12, Wood.ALDER, Wood.ALDER));
+            inventory.AddGuitar("V9512", 1549.95, new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, 12, Wood.ALDER, Wood.ALDER));
+        }
     }
 }

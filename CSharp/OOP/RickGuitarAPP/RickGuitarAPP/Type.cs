@@ -7,7 +7,7 @@ namespace RickGuitarAPP
 {
 public enum Type
     {
-        ELECTRONIC,ACOUSTIC
+        ELECTRIC, ACOUSTIC
     }
   
 }

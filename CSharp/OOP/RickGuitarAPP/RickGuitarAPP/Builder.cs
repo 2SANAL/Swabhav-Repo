@@ -7,6 +7,6 @@ namespace RickGuitarAPP
 {
     public enum Builder
     {
-        FRENDER,MARTIN,GIBSON,COLLINGS,OLSON,RYAN
+        FENDER, MARTIN, GIBSON, COLLINGS, OLSON, RYAN, PRS, ANY
     }
 }

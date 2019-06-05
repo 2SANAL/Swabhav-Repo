@@ -7,54 +7,43 @@ namespace RickGuitarAPP
 {
     class GuitarSpec
     {
-         private string _serialNumber, _model;
-        Type _type;
-        Wood _topWood, _backWood; 
-        Builder _builder;
-        private double _price;
-       
+        private Builder _builder;
+        private string _model;
+        private Type _type;
+        private int _numstring;
+        private Wood _backwood;
+        private Wood _topwood;
 
-        public Guitar(string _serialNumber,Builder _builder, string _model, Type _type, Wood _topWood, Wood _backWood,  double _price)
+        public GuitarSpec(Builder builder, string model, Type type, int numstring, Wood backwood, Wood topwood)
         {
-            this._serialNumber = _serialNumber;
-            this._model = _model;
-            this._type = _type;
-            this._topWood = _topWood;
-            this._backWood = _backWood;
-            this._price = _price;
-            this._builder = _builder;
+            _builder = builder;
+            _model = model;
+            _type = type;
+            _numstring = numstring;
+            _backwood = backwood;
+            _topwood = topwood;
         }
-
-        
-
-        public string GetSerialNumber()
+        public Builder GetBuilder() { return _builder; }
+        public string GetModel() { return _model; }
+        public Type Gettype() { return _type; }
+        public int Getnumstring() { return _numstring; }
+        public Wood GetBackwood() { return _backwood; }
+        public Wood GetTopwood() { return _topwood; }
+        public bool matches(GuitarSpec spec)
         {
-            return _serialNumber;
+            if (_builder != spec.GetBuilder())
+                return false;
+            if ((_model != null) && (!_model.Equals("")) && (!_model.Equals(spec.GetModel())))
+                return false;
+            if (_numstring != spec.Getnumstring())
+                return false;
+            if (_type != spec.Gettype())
+                return false;
+            if (_backwood != spec.GetBackwood())
+                return false;
+            if (_topwood != spec.GetTopwood())
+                return false;
+            return true;
         }
-        public double GetPrice()
-        {
-            return _price;
-        }
-        public Builder GetBuilder()
-        {
-            return _builder;
-        }
-        public string GetModel()
-        {
-            return _model;
-        }
-        public Type GetType()
-        {
-            return _type;
-        }
-        public Wood GetBackWood()
-        {
-            return _backWood;
-        }
-        public Wood GetTopWood()
-        {
-            return _topWood;
-        }
-
     }
 }

@@ -7,9 +7,7 @@ namespace RickGuitarAPP
 {
     public enum Wood
     {
-        INDIAN,BRAZILIAN,MAHOGANY,MAPLE,COCOBOLO,CEDAR
-
-
+        INDIAN_ROSEWOOD, BRAZILIAN_ROSEWOOD, MAHOGANY, MAPLE, COCOBOLA, CEDAR, ADIRONDACK, ALDER, SITKA
     }
     
     
