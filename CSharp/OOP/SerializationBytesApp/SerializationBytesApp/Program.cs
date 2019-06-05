@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SerializationBytesApp
 {
@@ -9,23 +8,26 @@ namespace SerializationBytesApp
     {
         static void Main(string[] args)
         {
-            List<string> Customers = new List<string>();
-            Customers.Add("Kailsh");
-            Customers.Add("Ramsharan");
-            Customers.Add("Panchanan");
-            Customers.Add("Roupya Manjari");
+            List<string> student = new List<string>();
+            student.Add("dhruv ");
+            student.Add("Akash");
+            student.Add("Dipesh");
+            student.Add("sanal");
 
-            FileStream FS = new FileStream("Customer.txt", FileMode.Create);
-            Serialize(Customers, FS);
+            FileStream FS = new FileStream("Student.txt", FileMode.Create);
+            Serialize serialize=new Serialize();
+            serialize.Serializing(student, FS);
             FS.Flush();
             FS.Close();
-            FS = new FileStream("Customer.txt", FileMode.Open);
-            List<string> Customers2 = Deserialize(FS);
+
+            FS = new FileStream("Student.txt", FileMode.Open);
+            Deserialize deserialize = new Deserialize();
+            List<string> student2 = deserialize.Deserializing(FS);
             FS.Close();
 
-            if (Customers2 != null)
+            if (student2 != null)
             {
-                foreach (string Customer in Customers2)
+                foreach (string Customer in student2)
                 {
                     Console.WriteLine(Customer);
                 }
@@ -33,37 +35,7 @@ namespace SerializationBytesApp
             Console.ReadLine();
 
         }
-        private static void Serialize(List<string> customers, FileStream fs)
-        {
-            BinaryFormatter BF = new BinaryFormatter();
-            try
-            {
-                BF.Serialize(fs, customers);
-                Console.WriteLine("Successfully Serialized");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Unable to Serialize from binary format");
-                //Console.WriteLine("Unable to deserialize from binary format");
-                Console.WriteLine(ex.Message);
-            }
-        }
-        private static List<string> Deserialize(FileStream fs)
-        {
-            BinaryFormatter BF = new BinaryFormatter();
-            List<string> LS = null;
-            try
-            {
-                LS = (List<string>)BF.Deserialize(fs);
-                Console.WriteLine("Successfully Deserialized");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Unable to Deserialize from binary format");
-                //Console.WriteLine("Unable to deserialize from binary format");
-                Console.WriteLine(ex.Message);
-            }
-            return LS;
-        }
+       
+        
     }
 }

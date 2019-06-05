@@ -4,21 +4,21 @@ namespace MyExceptionApp
 {
     class Program
     {
-        static void validate(int age)
+        static void validate(string name)
         {
-            if(age < 18)
+            if(!name .Equals("sanal") )
             {
-                throw new InvalidAgeException("Sorry ,Age must be greater than 18");
+                throw new InvalidNameException("Sorry ,name not is sanal");
             }
-            Console.WriteLine("Age "+age);
+            Console.WriteLine("Name "+name);
         }
         static void Main(string[] args)
         {
             try
             {
-                validate(12);
+                validate("dhruv");
             }
-            catch (InvalidAgeException e) { Console.WriteLine(e); }
+            catch (InvalidNameException e) { Console.WriteLine(e); }
         }
     }
 }

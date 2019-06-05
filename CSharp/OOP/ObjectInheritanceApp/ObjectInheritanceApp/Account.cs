@@ -10,6 +10,21 @@ namespace AccountApp.Business
         private double _balance;
         private static int _count;
 
+        public override bool Equals(object obj)
+        {
+            Account other = obj as Account;
+
+            if (_accno != other._accno || _name != other._name || _balance != other._balance)
+            {
+                return false;
+            }
+            if (other == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
         static Account()
         {
             Console.WriteLine("static constructu");
@@ -21,10 +36,7 @@ namespace AccountApp.Business
             return base.ToString()+"\n"+ "Account Number " + Accno + " \nName " + Name + " \nBalane " + Balance;
         }
 
-        public Account()
-        {
-            Console.WriteLine("NOn stati construcyor");
-        }
+        
         public Account(int accno, string name, double balance)
         {
             _accno = accno;

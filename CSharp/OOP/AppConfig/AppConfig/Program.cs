@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Reflection;
+using System.Configuration;
 
 namespace AppConfig
 {
@@ -7,18 +7,12 @@ namespace AppConfig
     {
         static void Main(string[] args)
         {
-            string value1 = System.Configuration.ConfigurationManager.AppSettings["k1"];
-            string value2 = System.Configuration.ConfigurationManager.AppSettings["k2"];
-            string value3 = System.Configuration.ConfigurationManager.AppSettings["k3"];
+            string value1 =ConfigurationManager.AppSettings["k1"];
+            string value2 = ConfigurationManager.AppSettings["k2"];
+            string value3 = ConfigurationManager.AppSettings["k3"];
             Console.WriteLine(value1+" "+value2+" "+value3);
 
-            Type type = Type.GetType("AccountApp.Business.account");
-
-            PropertyInfo[] properties = type.GetProperties();
-            foreach(PropertyInfo proprty in properties)
-            {
-                Console.WriteLine(proprty.Name);
-            }
+            
 
 
         }

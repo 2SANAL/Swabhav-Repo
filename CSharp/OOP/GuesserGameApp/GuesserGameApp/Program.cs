@@ -1,48 +1,58 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace GuesserGameApp
 {
     class Program
     {
+        static int userinputes;
+        static int result;
+        static string userchoice;
         static void Main(string[] args)
         {
-            int rnum;
-            Random rand = new Random();
-            rnum = rand.Next(0, 100);
+            GuessNumberGame guessergame = new GuessNumberGame();
+            guessergame.RandomNumberGenreator();
+            Console.WriteLine(" Random number " + guessergame.SystemRandomNumber);
+            Console.WriteLine("\n");
 
-            Console.WriteLine(rnum);
-            int userinput;
-            String userYN;
-           
-            while (true) 
+            while (true)
             {
-                Console.WriteLine("Guess the number");
-                userinput = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter the guess Number : and stop the game press -1");
+                userinputes = Convert.ToInt32(Console.ReadLine());
 
-                if(userinput <rnum)
+                if (userinputes == -1)
                 {
-                    Console.WriteLine("Number is small than guess no.");
-                }
-                else if(userinput > rnum)
-                {
-                    Console.WriteLine(" NUmber is large than guess no.");
-                }
-                else if (userinput == rnum)
-                {
-                    Console.WriteLine("You win");
-                    rnum = rand.Next(0, 100);
-                    Console.WriteLine(rnum);
-
-                }
-
-                Console.WriteLine("Do you Want to continuoe the game (y/n) ");
-                userYN = Console.ReadLine();
-                if (userYN.Equals("n"))
-                { 
                     break;
+                }
+
+                Console.WriteLine(" Random number " + guessergame.SystemRandomNumber);
+                Console.WriteLine("\n");
+                result = guessergame.GuessMatch(userinputes);
+
+                if (result == 0)
+                {
+                    Console.WriteLine("Number is small than Guess number ");
+                }
+                if (result == 1)
+                {
+                    Console.WriteLine("Number is lager than Guess number ");
+                }
+                if (result == guessergame.SystemRandomNumber)
+                {
+                    Console.WriteLine("win");
+
+                    Console.WriteLine("You want to continue game press 'y' or not 'n'  ");
+                    userchoice = Console.ReadLine();
+                    if (userchoice.Equals("n"))
+                    {
+                        break;
+                    }
+                    if (userchoice.Equals("y"))
+                    {
+                        guessergame.RandomNumberGenreator();
+                        Console.WriteLine("RAndom Number " + guessergame.SystemRandomNumber);
+
+                    }
+
                 }
 
             }
