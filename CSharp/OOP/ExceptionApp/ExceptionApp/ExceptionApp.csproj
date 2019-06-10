@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{392D8D98-E41B-4DED-BB97-94EB0C51500E}</ProjectGuid>
+    <ProjectGuid>{F27C7380-1550-43B8-809B-295918DD0345}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CreateObjectWithoutNewApp</RootNamespace>
-    <AssemblyName>CreateObjectWithoutNewApp</AssemblyName>
+    <RootNamespace>ExceptionApp</RootNamespace>
+    <AssemblyName>ExceptionApp</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WithoutName.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

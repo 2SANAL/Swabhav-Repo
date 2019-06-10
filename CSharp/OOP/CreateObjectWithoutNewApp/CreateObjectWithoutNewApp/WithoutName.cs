@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CreateObjectWithoutNewApp
 {
-    class Hello
+    class WithoutName
     {
         public void Display()
         {

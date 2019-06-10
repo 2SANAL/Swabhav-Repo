@@ -53,6 +53,7 @@ namespace EmployeeSalarySlipGenretorApp
             {
                 DateTime dateOfJoining = DateTime.Parse(DateOfJoin, System.Globalization.CultureInfo.InstalledUICulture);
                 DateTime currentDate = DateTime.Now;
+                Console.WriteLine(currentDate);
                 int month = currentDate.Month - dateOfJoining.Month;
                 int year = currentDate.Year - dateOfJoining.Year;
                 
