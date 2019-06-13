@@ -7,6 +7,6 @@ namespace DataAnalyzerApp
 {
     interface IDataLoader
     {
-        Dictionary<Employee, Employee> Loader();
+        void Loader();
     }
 }

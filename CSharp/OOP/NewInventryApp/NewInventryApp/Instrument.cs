@@ -10,6 +10,7 @@ namespace NewInventryApp
         private string _serialNo;
         private double _price;
         private InstrumentSpace _spec;
+        
 
         public Instrument(string serialNumber, double price, InstrumentSpace instumentSpec)
         {
@@ -20,7 +21,7 @@ namespace NewInventryApp
         public string GetSerialNo() { return _serialNo; }
         public double GetPrice() { return _price; }
         public void SetPrice(double p) { _price = p; }
-
+        
         public InstrumentSpace GetSpec()
         {
             return _spec;

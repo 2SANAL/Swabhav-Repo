@@ -5,24 +5,30 @@ namespace DataAnalyzerApp
 {
     class EmployeeAnalyzer
     {
-        Dictionary<Employee, Employee> employeeList = new Dictionary<Employee, Employee>();
+
+        private readonly DataParser _dataParser;
+
+        private Dictionary<Employee, Employee> _employeeList = new Dictionary<Employee, Employee>();
         private double _maxSalary = 0;
         private Employee _maxSalaryEmploye;
-        private Employee _employee1;
-        private Dictionary<string, int> countDepartmentWise = new Dictionary<string, int>();
-        private Dictionary<string, int> countDesignationWise = new Dictionary<string, int>();
+        private  Employee _employee1;
+        private Dictionary<string, int> _countDepartmentWise = new Dictionary<string, int>();
+        private Dictionary<string, int> _countDesignationWise = new Dictionary<string, int>();
 
-
-        public EmployeeAnalyzer(Dictionary<Employee, Employee> employeeList)
+        public EmployeeAnalyzer(DataParser dataParser)
         {
-            this.employeeList = employeeList;
+            _dataParser = dataParser;
+            MaxSalary();
+            DepartmentWiseEmployeeCount();
+            DesignationWiseEmployeeCount();
         }
 
         public void MaxSalary()
         {
             double salary;
+            _employeeList = _dataParser.EmployeeList;
 
-            foreach (KeyValuePair<Employee, Employee> employeeObj in employeeList)
+            foreach (KeyValuePair<Employee, Employee> employeeObj in _employeeList)
             {
                 _employee1 = employeeObj.Value;
                 salary = double.Parse(_employee1.Salary);
@@ -38,19 +44,20 @@ namespace DataAnalyzerApp
         {
 
             int result = 0;
-            foreach (KeyValuePair<Employee, Employee> employeeObj in employeeList)
+            _employeeList = _dataParser.EmployeeList;
+            foreach (KeyValuePair<Employee, Employee> employeeObj in _employeeList)
             {
                 _employee1 = employeeObj.Value;
 
-                if (countDepartmentWise.ContainsKey(_employee1.DepartmentNumber))
+                if (_countDepartmentWise.ContainsKey(_employee1.DepartmentNumber))
                 {
-                    countDepartmentWise.TryGetValue(_employee1.DepartmentNumber, out result);
-                    countDepartmentWise[_employee1.DepartmentNumber] = result + 1;
+                    _countDepartmentWise.TryGetValue(_employee1.DepartmentNumber, out result);
+                    _countDepartmentWise[_employee1.DepartmentNumber] = result + 1;
 
                 }
-                if (!countDepartmentWise.ContainsKey(_employee1.DepartmentNumber))
+                if (!_countDepartmentWise.ContainsKey(_employee1.DepartmentNumber))
                 {
-                    countDepartmentWise.Add(_employee1.DepartmentNumber, 1);
+                    _countDepartmentWise.Add(_employee1.DepartmentNumber, 1);
                 }
 
             }
@@ -58,44 +65,44 @@ namespace DataAnalyzerApp
 
         public void DesignationWiseEmployeeCount()
         {
-
+            _employeeList = _dataParser.EmployeeList;
             int result = 0;
-            foreach (KeyValuePair<Employee, Employee> employeeObj in employeeList)
+            foreach (KeyValuePair<Employee, Employee> employeeObj in _employeeList)
             {
                 _employee1 = employeeObj.Value;
 
-                if (countDesignationWise.ContainsKey(_employee1.EmployeeDesignation))
+                if (_countDesignationWise.ContainsKey(_employee1.EmployeeDesignation))
                 {
-                    countDesignationWise.TryGetValue(_employee1.EmployeeDesignation, out result);
-                    countDesignationWise[_employee1.EmployeeDesignation] = result + 1;
+                    _countDesignationWise.TryGetValue(_employee1.EmployeeDesignation, out result);
+                    _countDesignationWise[_employee1.EmployeeDesignation] = result + 1;
 
                 }
-                if (!countDesignationWise.ContainsKey(_employee1.EmployeeDesignation))
+                if (!_countDesignationWise.ContainsKey(_employee1.EmployeeDesignation))
                 {
-                    countDesignationWise[_employee1.EmployeeDesignation] = 1;
+                    _countDesignationWise[_employee1.EmployeeDesignation] = 1;
                 }
 
             }
         }
-        public Employee GetMaxSalaryEmployee
+        public Employee MaxSalaryEmployee
         {
             get
             {
                 return _maxSalaryEmploye;
             }
         }
-        public Dictionary<string, int> GetDepartmentWiseEmployee
+        public Dictionary<string, int> DepartmentWiseEmployee
         {
             get
             {
-                return countDepartmentWise;
+                return _countDepartmentWise;
             }
         }
-        public Dictionary<string, int> GetDesignationWiseCount
+        public Dictionary<string, int> DesignationWiseCount
         {
             get
             {
-                return countDesignationWise;
+                return _countDesignationWise;
             }
         }
 

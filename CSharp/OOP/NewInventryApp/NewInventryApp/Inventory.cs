@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -7,11 +7,11 @@ namespace NewInventryApp
 {
     class Inventory
     {
-        private ArrayList inventory;
+        private List<Instrument> inventory;
 
         public Inventory()
         {
-            inventory = new ArrayList();
+            inventory = new List<Instrument>();
         }
 
         public void AddInstrument(string serialno, double price, InstrumentSpace spec)
@@ -41,25 +41,44 @@ namespace NewInventryApp
             return null;
         }
 
-        public ArrayList SearchGuitar(GuitarSpec searchGuitar)
+
+        public List<Instrument> SearchGuitar(GuitarSpec searchGuitar)
         {
-            ArrayList matchingGuitars = new ArrayList();
-            foreach (Guitar G in inventory)
+            List<Instrument> matchingGuitars = new List<Instrument>();
+            for (int i = 0; i < inventory.Count; i++)
             {
-                if (G.GetSpec().matches(searchGuitar))
-                    matchingGuitars.Add(G);
+                if (inventory[i] is Guitar)
+                {
+                    if (inventory[i].GetSpec().matches(searchGuitar))
+                        matchingGuitars.Add(inventory[i]);
+                }
+               
+
             }
             return matchingGuitars;
         }
-        public ArrayList SearchMandolin(MandolinSpec searchMandolin)
+
+
+        public List<Instrument> SearchMandolin(MandolinSpec searchMandolin)
         {
-            ArrayList matchingMandolin = new ArrayList();
-            foreach (Mandolin I in inventory)
+            List<Instrument> matchingMandolin = new List<Instrument>();
+
+
+            for (int i = 0; i < inventory.Count; i++)
             {
-                if (I.GetSpec().matches(searchMandolin))
-                    matchingMandolin.Add(I);
+                if (inventory[i] is Mandolin)
+                {
+                    if (inventory[i].GetSpec().matches(searchMandolin))
+                        matchingMandolin.Add(inventory[i]);
+                }
+
+
             }
             return matchingMandolin;
         }
+
+
+
+
     }
 }

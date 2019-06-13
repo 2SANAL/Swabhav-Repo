@@ -10,22 +10,28 @@ namespace DataAnalyzerApp
 
 
         private readonly string _path;
-        Dictionary<Employee, Employee> employeelistDataParser = new Dictionary<Employee, Employee>();
-        
-      
+        Dictionary<Employee, Employee> _employeelistDataParser = new Dictionary<Employee, Employee>();
+
+        private string[] _lines;
 
         public CsvDataLoader(string path)
         {
             _path = path;
+            Loader();
         }
 
-        public Dictionary<Employee, Employee> Loader()
+        public void Loader()
         {
-            DataParser _dataParser = new DataParser();
-            string[] lines = File.ReadAllLines(_path);
+            
+             _lines = File.ReadAllLines(_path);
+        }
 
-            employeelistDataParser = _dataParser.ParseData(lines);
-            return employeelistDataParser;
+        public string[] lines
+        {
+            get
+            {
+                return _lines;
+            }
         }
 
     }
