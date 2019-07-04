@@ -12,59 +12,64 @@ namespace NewInventryApp
             Inventory inventory = new Inventory();
             InitializeInventroy(inventory);
 
-            MandolinSpec whatErinLikes = new MandolinSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, Style.A, Wood.ALDER, Wood.ALDER);
-            GuitarSpec whatErinLikes1 = new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, 12, Wood.ALDER, Wood.ALDER);
+            Dictionary<string, object> properties = new Dictionary<string, object>();
+            properties.Add("builder", Builder.COLLINGS);
+            properties.Add("backWood", Wood.SITKA);
+            properties.Add("builder1", Builder.COLLINGS);
+            properties.Add("backWood1", Wood.SITKA);
+            InstrumentSpec clientSpec = new InstrumentSpec(properties);
 
-            if (whatErinLikes is MandolinSpec)
+            List<Instrument> matchingInstrument = inventory.SearchInstrument(clientSpec);
+
+            if (matchingInstrument.Count > 0)
             {
-                List<Instrument> matchingMandolin = inventory.SearchMandolin(whatErinLikes);
+                Console.WriteLine("you might like these Instrument:");
 
-                if (matchingMandolin.Count >= 0)
+                foreach (Instrument instrument in matchingInstrument)
                 {
-                    Console.WriteLine("Erin,you might like these Mandolin:");
-                    foreach (Mandolin mandolin in matchingMandolin)
-                    {
-                        MandolinSpec spec = (MandolinSpec)mandolin.GetSpec();
-                        Console.WriteLine("We have a " + spec.GetBuilder() + " " + spec.GetModel() + " " + spec.GetStyle() + " String " +
-                            spec.Gettype() + " guitar:\n    " +
-                            spec.GetBackwood() + " back and sides,\n    " +
-                            spec.GetTopwood() + " top. \n You cac have it for only $" +
-                            mandolin.GetPrice() + "!\n  ----");
-                    }
-                }
-                else
-                    Console.WriteLine("Sorry, Erin We have nothing for you!");
-                if (whatErinLikes1 is GuitarSpec)
-                {
-                    List<Instrument> matchingGuitar = inventory.SearchGuitar(whatErinLikes1);
 
-                    if (matchingGuitar.Count >= 0)
+                    InstrumentSpec spec = instrument.GetSpec();
+
+                    Console.WriteLine("We have a " + spec.getProperty("instrumentType") + "  with follwing Properties ");
+                    foreach (var j in spec.getProperties().Keys)
                     {
-                        Console.WriteLine("Erin,you might like these Mandolin:");
-                        foreach (Guitar guitar in matchingGuitar)
+                        string propertyName = Convert.ToString(j);
+                        if (propertyName.Equals("instrumentType"))
                         {
-                            GuitarSpec spec = (GuitarSpec)guitar.GetSpec();
-                            Console.WriteLine("We have a " + spec.GetBuilder() + " " + spec.GetModel() + " " + spec.Getnumstring() + " String " +
-                                spec.Gettype() + " guitar:\n    " +
-                                spec.GetBackwood() + " back and sides,\n    " +
-                                spec.GetTopwood() + " top. \n You cac have it for only $" +
-                                guitar.GetPrice() + "!\n  ----");
+                            continue;
                         }
+                        Console.WriteLine(" "+propertyName+" :"+spec.getProperty(propertyName));
                     }
-                    else
-                        Console.WriteLine("Sorry, Erin We have nothing for you!");
+                    Console.WriteLine("You can have this "+spec.getProperty("instrumentType")+" $"+instrument.GetPrice()+"\n----");
 
                 }
             }
-
-
+            else
+            {
+                Console.WriteLine("Sorry,we have nothing fo you");
+            }
         }
         static void InitializeInventroy(Inventory inventory)
         {
-            inventory.AddInstrument("V9569", 1499.95, new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, 12, Wood.ALDER, Wood.ALDER));
-            inventory.AddInstrument("V9512", 1549.95, new GuitarSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, 12, Wood.ALDER, Wood.ALDER));
-            inventory.AddInstrument("V9513", 1540.95, new MandolinSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, Style.A, Wood.ALDER, Wood.ALDER));
-            inventory.AddInstrument("V9413", 1500.95, new MandolinSpec(Builder.FENDER, "Stratocastor", Type.ELECTRIC, Style.A, Wood.ALDER, Wood.ALDER));
+            Dictionary<string, object> properties = new Dictionary<string, object>();
+            properties.Add("instrumentType",InstrumentType.GUITAR);
+            properties.Add("builder",Builder.COLLINGS);
+            properties.Add("model", "CJ");
+            properties.Add("numString",6);
+            properties.Add("topWood", Wood.INDIAN_ROSEWOOD);
+            properties.Add("backWood",Wood.SITKA);
+
+            properties.Add("instrumentType1", InstrumentType.BASS);
+            properties.Add("builder1", Builder.COLLINGS);
+            properties.Add("model1", "CJ");
+            properties.Add("numString1", 6);
+            properties.Add("topWood1", Wood.INDIAN_ROSEWOOD);
+            properties.Add("backWood1", Wood.SITKA);
+
+
+            inventory.AddInstrument("1234", 250, new InstrumentSpec(properties));
+
+            inventory.AddInstrument("123554", 650, new InstrumentSpec(properties));
         }
     }
 }

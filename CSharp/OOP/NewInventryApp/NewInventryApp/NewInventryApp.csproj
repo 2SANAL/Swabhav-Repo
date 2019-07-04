@@ -46,6 +46,7 @@
     <Compile Include="GuitarSpec.cs" />
     <Compile Include="Instrument.cs" />
     <Compile Include="InstrumentSpace.cs" />
+    <Compile Include="InstrumentType.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Mandolin.cs" />
     <Compile Include="MandolinSpec.cs" />

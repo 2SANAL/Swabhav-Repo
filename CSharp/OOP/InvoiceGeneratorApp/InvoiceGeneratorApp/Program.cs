@@ -1,25 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.IO;
 using System.Text;
 
 namespace InvoiceGeneratorApp
 {
     class Program
     {
+       
+
         static void Main(string[] args)
         {
-
-            // CaseStudy1();
+           
+            CaseStudy1();
+            
             // CaseStudy2();
             //CaseStudy3();
-            CaseStudy4();
+            // CaseStudy4();
 
         }
 
         public static void CaseStudy1()
         {
-            List<string> list = new List<string>();
+
             Custmore customer = new Custmore(101, "Abc", "Mumbai");
             LineItem laptop = new LineItem(10001, 2, new Product(20002, "Hp", 450000));
             LineItem mobile = new LineItem(10002, 3, new Product(3000, "1+", 45000));
@@ -27,15 +31,12 @@ namespace InvoiceGeneratorApp
             Order order1 = new Order(123, new DateTime(2019, 01, 05));
             order1.AddItem(laptop);
             order1.AddItem(mobile);
+
             customer.AddOrder(order1);
 
-            Invoice invoice = new Invoice(customer);
+            InvoiceGenerator invoice = new InvoiceGenerator(customer);
 
-            list = invoice.AllCustmoreOrderDetails;
-            foreach (string item in list)
-            {
-                Console.WriteLine(item);
-            }
+
         }
         public static void CaseStudy2()
         {
@@ -76,6 +77,10 @@ namespace InvoiceGeneratorApp
                 Console.WriteLine("Product Cost " + item.Peoductlist.ProductTotalCost);
                 Console.WriteLine("Product After Discount " + item.Peoductlist.ProductDiscount);
             }
+
+
+        
+        
 
         }
 

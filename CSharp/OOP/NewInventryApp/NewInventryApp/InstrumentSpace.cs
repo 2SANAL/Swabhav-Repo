@@ -5,39 +5,44 @@ using System.Text;
 
 namespace NewInventryApp
 {
-    abstract class InstrumentSpace
+     class InstrumentSpec
     {
-        private Builder _builder;
-        private string _model;
-        private Type _type;
-        private Wood _backwood;
-        private Wood _topwood;
+        private Dictionary<string,object> properties;
+        public InstrumentSpec() { }
 
-        public InstrumentSpace(Builder builder, string model, Type type, Wood backWood, Wood topWood)
+        public InstrumentSpec(Dictionary<string, object> properties)
         {
-            _builder = builder;
-            _model = model;
-            _backwood = backWood;
-            _topwood = topWood;
+            if (properties == null)
+            {
+                this.properties =new  Dictionary<string, object>();
+            }
+            else
+            {
+                this.properties = new Dictionary<string, object>(properties);
+            }
         }
-        public Builder GetBuilder() { return _builder; }
-        public string GetModel() { return _model; }
-        public Type Gettype() { return _type; }
-        public Wood GetBackwood() { return _backwood; }
-        public Wood GetTopwood() { return _topwood; }
+       
 
-        public bool matches(InstrumentSpace otherspec)
+        public object getProperty(string propertyName)
         {
-            if (_builder != otherspec.GetBuilder())
-                return false;
-            if ((_model != null) && (!_model.Equals("")) && (!_model.Equals(otherspec.GetModel())))
-                return false;
-            if (_type != otherspec.Gettype())
-                return false;
-            if (_backwood != otherspec.GetBackwood())
-                return false;
-            if (_topwood != otherspec.GetTopwood())
-                return false;
+            return properties[propertyName];
+        }
+        public Dictionary<string, object> getProperties()
+        {
+            return properties;
+        }
+
+        public bool matches(InstrumentSpec otherspec)
+        {
+            foreach(var i in otherspec.getProperties().Keys)
+            {
+                string properName = (string)i;
+                if (!properties[properName].Equals(otherspec.getProperty(properName)))
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
     }

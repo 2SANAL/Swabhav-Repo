@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingletonPatternDemoApp", "SingletonPatternDemoApp\SingletonPatternDemoApp.csproj", "{A887D130-8CB7-4CA4-A994-8633B7449D59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrategyPatternDemoApp", "StrategyPatternDemoApp\StrategyPatternDemoApp.csproj", "{D9A71005-BE5F-4DF4-823C-2ADB47120DEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacadePatternDemoApp", "FacadePatternDemoApp\FacadePatternDemoApp.csproj", "{660E4151-AACB-4A04-A527-4E3CC4276772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryPatternApp", "FactoryPatternApp\FactoryPatternApp.csproj", "{46B765EE-C422-4220-B856-58B51130B4B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObserverPatternApp", "ObserverPatternApp\ObserverPatternApp.csproj", "{B4C059BB-F3D3-46B3-9233-1171F80296A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositePatternApp", "CompositePatternApp\CompositePatternApp.csproj", "{89C0CBBA-E4F1-478F-AE10-4364F8D4C1E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A887D130-8CB7-4CA4-A994-8633B7449D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A887D130-8CB7-4CA4-A994-8633B7449D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A887D130-8CB7-4CA4-A994-8633B7449D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A887D130-8CB7-4CA4-A994-8633B7449D59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9A71005-BE5F-4DF4-823C-2ADB47120DEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9A71005-BE5F-4DF4-823C-2ADB47120DEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9A71005-BE5F-4DF4-823C-2ADB47120DEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9A71005-BE5F-4DF4-823C-2ADB47120DEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{660E4151-AACB-4A04-A527-4E3CC4276772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{660E4151-AACB-4A04-A527-4E3CC4276772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{660E4151-AACB-4A04-A527-4E3CC4276772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{660E4151-AACB-4A04-A527-4E3CC4276772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46B765EE-C422-4220-B856-58B51130B4B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46B765EE-C422-4220-B856-58B51130B4B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46B765EE-C422-4220-B856-58B51130B4B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46B765EE-C422-4220-B856-58B51130B4B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C059BB-F3D3-46B3-9233-1171F80296A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C059BB-F3D3-46B3-9233-1171F80296A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C059BB-F3D3-46B3-9233-1171F80296A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C059BB-F3D3-46B3-9233-1171F80296A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89C0CBBA-E4F1-478F-AE10-4364F8D4C1E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89C0CBBA-E4F1-478F-AE10-4364F8D4C1E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89C0CBBA-E4F1-478F-AE10-4364F8D4C1E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89C0CBBA-E4F1-478F-AE10-4364F8D4C1E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

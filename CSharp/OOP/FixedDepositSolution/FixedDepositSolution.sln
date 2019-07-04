@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCPViolationFixedDeposit", "OCPViolationFixedDeposit\OCPViolationFixedDeposit.csproj", "{CC0BC986-25BD-4DD7-9507-F41DC63A7D90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcrOcrInViolationFixedDeposit", "OcrOcrInViolationFixedDeposit\OcrOcrInViolationFixedDeposit.csproj", "{395410BD-829C-4DC7-8D3F-599CC23AC4C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC0BC986-25BD-4DD7-9507-F41DC63A7D90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC0BC986-25BD-4DD7-9507-F41DC63A7D90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC0BC986-25BD-4DD7-9507-F41DC63A7D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC0BC986-25BD-4DD7-9507-F41DC63A7D90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{395410BD-829C-4DC7-8D3F-599CC23AC4C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{395410BD-829C-4DC7-8D3F-599CC23AC4C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{395410BD-829C-4DC7-8D3F-599CC23AC4C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{395410BD-829C-4DC7-8D3F-599CC23AC4C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -14,18 +14,10 @@ namespace NewInventryApp
             inventory = new List<Instrument>();
         }
 
-        public void AddInstrument(string serialno, double price, InstrumentSpace spec)
+        public void AddInstrument(string serialno, double price, InstrumentSpec spec)
         {
-            Instrument instrument = null;
-            if (spec is GuitarSpec)
-            {
-                instrument = new Guitar(serialno, price, (GuitarSpec)spec);
+            Instrument instrument = new Instrument(serialno, price,spec);
 
-            }
-            if (spec is MandolinSpec)
-            {
-                instrument = new Mandolin(serialno, price, (MandolinSpec)spec);
-            }
             inventory.Add(instrument);
         }
 
@@ -42,42 +34,16 @@ namespace NewInventryApp
         }
 
 
-        public List<Instrument> SearchGuitar(GuitarSpec searchGuitar)
+        public List<Instrument> SearchInstrument(InstrumentSpec searchSpec)
         {
-            List<Instrument> matchingGuitars = new List<Instrument>();
-            for (int i = 0; i < inventory.Count; i++)
+            List<Instrument> matchingInstrument = new List<Instrument>();
+            foreach (Instrument instrument in inventory)
             {
-                if (inventory[i] is Guitar)
-                {
-                    if (inventory[i].GetSpec().matches(searchGuitar))
-                        matchingGuitars.Add(inventory[i]);
-                }
-               
-
+                if (instrument.GetSpec().matches(searchSpec))
+                    matchingInstrument.Add(instrument);
             }
-            return matchingGuitars;
+            return matchingInstrument;
         }
-
-
-        public List<Instrument> SearchMandolin(MandolinSpec searchMandolin)
-        {
-            List<Instrument> matchingMandolin = new List<Instrument>();
-
-
-            for (int i = 0; i < inventory.Count; i++)
-            {
-                if (inventory[i] is Mandolin)
-                {
-                    if (inventory[i].GetSpec().matches(searchMandolin))
-                        matchingMandolin.Add(inventory[i]);
-                }
-
-
-            }
-            return matchingMandolin;
-        }
-
-
 
 
     }

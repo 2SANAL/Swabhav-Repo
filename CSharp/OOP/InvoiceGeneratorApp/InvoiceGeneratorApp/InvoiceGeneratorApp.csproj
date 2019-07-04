@@ -41,7 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Custmore.cs" />
-    <Compile Include="Invoice.cs" />
+    <Compile Include="DisplayDataOnHTMLPage.cs" />
+    <Compile Include="InvoiceGenerator.cs" />
     <Compile Include="LineItem.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Product.cs" />

@@ -5,15 +5,15 @@ using System.Text;
 
 namespace NewInventryApp
 {
-    class Guitar : Instrument
-    {
+    //class Guitar : Instrument
+    //{
 
 
-        public Guitar(string serialno, double price, GuitarSpec spec) : base(serialno, price, spec)
-        {
+    //    public Guitar(string serialno, double price, GuitarSpec spec) : base(serialno, price, spec)
+    //    {
 
-        }
+    //    }
 
 
-    }
+    //}
 }

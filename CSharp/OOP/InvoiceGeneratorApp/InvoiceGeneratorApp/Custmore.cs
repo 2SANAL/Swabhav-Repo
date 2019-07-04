@@ -45,7 +45,8 @@ namespace InvoiceGeneratorApp
             _ordersList.Add(order);
         }
 
-        public List<Order> GetOrderList
+        public List<Order> OrderList
+
         {
             get
             {
