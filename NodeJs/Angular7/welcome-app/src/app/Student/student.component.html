@@ -1,0 +1,16 @@
+<section>
+    <img [src]='"./assets/imges/download.png"' />
+    <p>{{student['name']}}</p>
+    <p>{{student['rollno']}}</p>
+    <p>{{student['cgpi']}}</p>
+    <p [innerHTML]='student.name'></p>
+    <p [innerHTML]='"Foo"'></p>
+    <p [style.font-size]='"100px"' [style.color]="'orange'"> {{student['name']}}</p>
+
+    <button (click)="loadStudentDetails($event)">LoadData</button>
+    <p *ngFor="let student of student1">
+        Name:{{student.name}}
+        RollNo: {{student.rollno}}
+        CGpi:{{student.cgpi}}
+    </p>
+</section>
