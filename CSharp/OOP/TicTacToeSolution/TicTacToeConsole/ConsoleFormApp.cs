@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 namespace TicTacToeConsole
 {
-    class ConsoleFormApp : Form
+    class   ConsoleFormApp : Form
     {
         private Player[] player = new Player[2];
         private Board board = new Board();
