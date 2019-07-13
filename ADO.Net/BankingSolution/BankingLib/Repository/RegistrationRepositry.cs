@@ -6,9 +6,9 @@ using System.Data.SqlClient;
 
 namespace BankingLib
 {
-    public class Registration
+    public class RegistrationRepositry
     {
-        public void Registor(string username, string password, double balance, string type)
+        public bool Registor(string username, string password, double balance, string type)
         {
 
             SqlConnection connection = new Connection().Connectionobj;
@@ -36,6 +36,7 @@ namespace BankingLib
 
                     transaction.Commit();
                     Console.WriteLine("Both records are written to database.");
+                    return true;
                 }
                 catch (Exception ex)
                 {
@@ -51,6 +52,7 @@ namespace BankingLib
                         Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType());
                         Console.WriteLine("  Message: {0}", ex2.Message);
                     }
+                    return false;
                 }
                 finally
                 {

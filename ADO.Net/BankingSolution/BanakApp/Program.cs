@@ -12,20 +12,13 @@ namespace BanakApp
         static void Main(string[] args)
         {
             // NewMethod();
-            //   NewMethod1();
-            //Registration registor = new Registration();
-            //          registor.Registor("Sanal1", "sanal", 500, "Deposite");
-
-            DoTransaction d = new DoTransaction();
-            d.Transaction(100, "withdrawal", "Sanal1");
-            GetAllRecord g = new GetAllRecord();
-            g.getData();
+            NewMethod1();
         }
 
         private static void NewMethod1()
         {
             Application.EnableVisualStyles();
-            Application.Run(new PassBookForm());
+            Application.Run(new LoginForm());
         }
 
         private static void NewMethod()
@@ -33,21 +26,21 @@ namespace BanakApp
             string username;
             string password;
 
-            PassBook passnool = new PassBook();
-            passnool.PassBookPrint("Mit");
-            GetAllRecord g = new GetAllRecord();
-            g.getData();
+            PassBookRepositry passnool = new PassBookRepositry();
+            passnool.GetTransaction("Mit");
+            //   GetAllRecord g = new GetAllRecord();
+            // g.getData();
 
-           
 
-            Login login = new Login();
+
+            LoginRepositry login = new LoginRepositry();
 
             Console.WriteLine("Enter the Username");
             username = Console.ReadLine();
             Console.WriteLine("Enter the Password");
             password = Console.ReadLine();
 
-            login.ConnectToDB(username, password);
+            login.LoginValidation(username, password);
         }
     }
 }

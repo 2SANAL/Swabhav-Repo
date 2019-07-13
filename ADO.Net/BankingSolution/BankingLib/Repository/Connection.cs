@@ -12,8 +12,7 @@ namespace BankingLib
 
         public Connection()
         {
-            _connection = new SqlConnection(@"Data Source=.\MSSQLSERVER1;Initial Catalog=AurionPro;
-                            Integrated Security=True");
+            _connection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DatabaseConnection"].ToString());
         }
 
         public SqlConnection Connectionobj

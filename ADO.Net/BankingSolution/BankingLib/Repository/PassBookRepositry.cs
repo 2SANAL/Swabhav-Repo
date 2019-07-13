@@ -1,34 +1,25 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using BankingLib;
 
 namespace BankingLib
 {
-    public class PassBook
+    public class PassBookRepositry
     {
         private SqlDataAdapter da;
+        private List<TransactionData> _list;
 
-        private string _filePath = @"E:/SwabhavTech/ADO.Net/transaction.csv";
-        public SqlDataAdapter LoadData()
+        public PassBookRepositry()
         {
-            SqlConnection connection = new Connection().Connectionobj;
-
-            string query = "select * from BankTransaction where Name='Akash'";
-
-            da = new SqlDataAdapter(query, connection);
-            connection.Open();
-            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(da);
-
-            return da;
+            _list = new List<TransactionData>();
         }
-
-        public void PassBookPrint(string username)
+     
+        public List<TransactionData> GetTransaction(string username)
         {
-            var csv = new StringBuilder();
-
             var connection = new Connection().Connectionobj;
             string query = "select * from BankTransaction where Name='" + username + "'";
             var command = new SqlCommand(query, connection);
@@ -40,19 +31,20 @@ namespace BankingLib
                 {
                     while (sqlDataReader.Read())
                     {
-                        var _newLine = string.Format("{0},{1},{2},{3}", sqlDataReader["Name"], sqlDataReader["Amount"], sqlDataReader["TransactionType"], sqlDataReader["TransactionDate"]);
-                        csv.Append(_newLine);
+                        var _newLine = new TransactionData(sqlDataReader["Name"],sqlDataReader["Amount"],sqlDataReader["TransactionType"],sqlDataReader["TransactionDate"]);
+                        _list.Add(_newLine);
                     }
-                    File.WriteAllText(_filePath, csv.ToString());
                 }
                 else
                 {
                     Console.WriteLine("Data not found");
                 }
+                return _list;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                return _list;
             }
             finally
             {

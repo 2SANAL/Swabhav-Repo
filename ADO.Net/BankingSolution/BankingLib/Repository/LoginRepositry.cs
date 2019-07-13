@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+
 namespace BankingLib
 {
-  public  class GetAllRecord
-    {
-       public void getData()
-        {
-            var connection = new Connection().Connectionobj;
-       
-            var command = new SqlCommand("select * from BankMaster", connection);
 
+    public class LoginRepositry
+    {
+        private bool _flage;
+
+        public bool LoginValidation(string username, string password)
+        {
+
+            var connection = new Connection().Connectionobj;
+
+            var command = new SqlCommand("select Name, BankPassword from BankMaster where Name= '" + username
+                + "' AND BankPassword='" + password + "'", connection);
             try
             {
                 connection.Open();
@@ -22,26 +27,32 @@ namespace BankingLib
                     while (sqlDataReader.Read())
                     {
 
-                        Console.WriteLine(sqlDataReader["Name"] + " " + sqlDataReader["BankPassword"]+" "+sqlDataReader["Balance"]);
-
-                      
+                        if (sqlDataReader.GetValue(0).Equals(username) &&
+                            sqlDataReader.GetValue(1).Equals(password))
+                        {
+                            _flage = true;
+                        }
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Failed login");
+                    _flage = false;
                 }
                 sqlDataReader.Close();
+                return _flage;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                return _flage;
             }
+
             finally
             {
                 command.Dispose();
                 connection.Close();
             }
+
         }
     }
 }

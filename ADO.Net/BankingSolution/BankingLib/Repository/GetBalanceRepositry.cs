@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-
 namespace BankingLib
 {
-
-    public class Login
+    public class GetBalanceRepositry
     {
-        private bool _flage;
+        private string _balance;
 
-        public bool ConnectToDB(string username, string password)
+        public string GetBalance(string username)
         {
-
             var connection = new Connection().Connectionobj;
 
-            var command = new SqlCommand("select Name, BankPassword from BankMaster where Name= '" + username
-                + "' AND BankPassword='" + password + "'", connection);
+            var command = new SqlCommand("select Balance from BankMaster where Name='" + username + "'", connection);
+
             try
             {
                 connection.Open();
@@ -26,35 +23,26 @@ namespace BankingLib
                 {
                     while (sqlDataReader.Read())
                     {
-
-                        Console.WriteLine(sqlDataReader["Name"] + " " + sqlDataReader["BankPassword"]);
-
-                        if (sqlDataReader.GetValue(0).Equals(username) &&
-                            sqlDataReader.GetValue(1).Equals(password))
-                        {
-                            _flage = true;
-                        }
+                        _balance = Convert.ToString(sqlDataReader.GetValue(0));
                     }
                 }
                 else
                 {
-                    _flage = false;
+                    Console.WriteLine("Failed login");
                 }
                 sqlDataReader.Close();
-                return _flage;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return _flage;
+                _balance = "Filed to Load Balance";
             }
-
             finally
             {
                 command.Dispose();
                 connection.Close();
             }
-
+            return _balance;
         }
     }
 }
