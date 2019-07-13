@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace BankingLib
 {
@@ -42,11 +43,25 @@ namespace BankingLib
             try
             {
                 command.CommandText =
-                   "update BankMaster set Balance= Balance +" + amount + " where Name='" + username + "'";
+                   "update BankMaster set Balance= Balance + @amount  where Name=@username";
+                command.Parameters.Add("@amount", SqlDbType.Int);
+                command.Parameters.Add("@username", SqlDbType.VarChar);
+                command.Parameters["@username"].Value = username;
+                command.Parameters["@amount"].Value = amount;
                 command.ExecuteNonQuery();
                 command.CommandText =
-                     "insert into BankTransaction(Name,Amount,TransactionType,TransactionDate) values('" + username + "',"
-                + amount + ",'" + type + "','" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "')"; ;
+                  "insert into BankTransaction(Name,Amount,TransactionType,TransactionDate) values(@username1,@amount1,@type,@Date)";
+
+                command.Parameters.Add("@amount1", SqlDbType.Int);
+                command.Parameters.Add("@username1", SqlDbType.VarChar);
+                command.Parameters.Add("@type", SqlDbType.VarChar);
+                command.Parameters.Add("@Date", SqlDbType.VarChar);
+
+                command.Parameters["@username1"].Value = username;
+                command.Parameters["@amount1"].Value = amount;
+                command.Parameters["@type"].Value = "Deposite";
+                command.Parameters["@Date"].Value = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+
                 command.ExecuteNonQuery();
 
                 transaction.Commit();
@@ -80,12 +95,26 @@ namespace BankingLib
         {
             try
             {
-                command.CommandText =
-                   "update BankMaster set Balance= Balance -" + amount + " where Name='" + username + "'";
+                command.CommandText =   
+                    "update BankMaster set Balance= Balance - @amount  where Name=@username";
+
+                command.Parameters.Add("@amount", SqlDbType.Int);
+                command.Parameters.Add("@username", SqlDbType.VarChar);
+                command.Parameters["@username"].Value = username;
+                command.Parameters["@amount"].Value = amount;
                 command.ExecuteNonQuery();
                 command.CommandText =
-                     "insert into BankTransaction(Name,Amount,TransactionType,TransactionDate) values('" + username + "',"
-                + amount + ",'" + type + "','" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "')"; ;
+                  "insert into BankTransaction(Name,Amount,TransactionType,TransactionDate) values(@username1,@amount1,@type,@Date)";
+
+                command.Parameters.Add("@amount1", SqlDbType.Int);
+                command.Parameters.Add("@username1", SqlDbType.VarChar);
+                command.Parameters.Add("@type", SqlDbType.VarChar);
+                command.Parameters.Add("@Date", SqlDbType.VarChar);
+
+                command.Parameters["@username1"].Value = username;
+                command.Parameters["@amount1"].Value = amount;
+                command.Parameters["@type"].Value = "withdrawal";
+                command.Parameters["@Date"].Value = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
                 command.ExecuteNonQuery();
 
                 transaction.Commit();

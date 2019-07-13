@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text;
+using System.Data;
 using BankingLib;
 
 namespace BankingLib
@@ -21,8 +21,10 @@ namespace BankingLib
         public List<TransactionData> GetTransaction(string username)
         {
             var connection = new Connection().Connectionobj;
-            string query = "select * from BankTransaction where Name='" + username + "'";
+            string query = "select * from BankTransaction where Name= @username ";
             var command = new SqlCommand(query, connection);
+            command.Parameters.Add("@username", SqlDbType.VarChar);
+            command.Parameters["@username"].Value = username;
             try
             {
                 connection.Open();

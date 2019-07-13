@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace BankingLib
@@ -16,8 +16,14 @@ namespace BankingLib
 
             var connection = new Connection().Connectionobj;
 
-            var command = new SqlCommand("select Name, BankPassword from BankMaster where Name= '" + username
-                + "' AND BankPassword='" + password + "'", connection);
+
+           var command = new SqlCommand("select Name, BankPassword from BankMaster where Name= @username AND BankPassword=@password ", connection);
+            command.Parameters.Add("@username", SqlDbType.VarChar);
+            command.Parameters.Add("@password", SqlDbType.VarChar);
+
+            command.Parameters["@password"].Value = password;
+            command.Parameters["@username"].Value = username;
+
             try
             {
                 connection.Open();
