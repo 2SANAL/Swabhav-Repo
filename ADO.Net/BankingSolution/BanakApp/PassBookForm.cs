@@ -155,7 +155,7 @@ namespace BanakApp
         private void downloadBtn_Click(object sender, EventArgs e)
         {
             var csv = new StringBuilder();
-
+            csv.AppendLine(string.Format("{0},{1},{2},{3}", "Name", "Amount", "Transaction Type", "Transaction Date"));
             foreach (TransactionData transactionData in _listTransaction)
             {
                 var newLine = string.Format("{0},{1},{2},{3}",
