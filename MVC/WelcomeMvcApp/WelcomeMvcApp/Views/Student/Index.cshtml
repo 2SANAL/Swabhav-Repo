@@ -1,0 +1,47 @@
+﻿
+
+@{
+    Layout = null;
+}
+@using System.Web.UI.WebControls
+@using WelcomeMvcApp.Model.Student;
+@using WelcomeMvcApp.BusinessModel;
+@model IndexViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" Content="bootstrap.css"/>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <h1>No Of Student @Model.Count</h1>
+        <table class="table table-hover">
+            <tr>
+                <td><b>Name</b></td>
+                <td><b>RollNo</b></td>
+                <td><b>Age</b></td>
+                <td><b>Cgpi</b></td>
+                <td><b>Location</b></td>
+                <td><b>Date Of Brith</b></td>
+
+            </tr>
+            @foreach (var student in @Model.Students)
+            {
+
+                <tr>
+                    <td>@student.Name</td>
+                    <td>@student.RollNo</td>
+                    <td>@student.Age</td>
+                    <td>@student.Cgpi</td>
+                    <td>@student.Location</td>
+                    <td>@(@DateTime.Now.Year-@Convert.ToDateTime(student.DOB).Year)</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

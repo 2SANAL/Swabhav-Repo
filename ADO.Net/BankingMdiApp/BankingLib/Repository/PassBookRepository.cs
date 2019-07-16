@@ -1,58 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
-using System.Data;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Data.SqlClient;
+    using System.Data;
 
-namespace BankingLib.Repository
-{
-    public class PassBookRepository
+    namespace BankingLib.Repository
     {
-        private readonly List<TransactionData> _list;
-
-        public PassBookRepository()
+        public class PassBookRepository
         {
-            _list = new List<TransactionData>();
-        }
+            private readonly List<TransactionData> _list;
 
-        public List<TransactionData> GetTransaction(string username)
-        {
-            var connection = new Connection().Connectiononobj;
-            string query = "select * from BankTransaction where Name= @username ";
-            var command = new SqlCommand(query, connection);
-            command.Parameters.Add("@username", SqlDbType.VarChar);
-            command.Parameters["@username"].Value = username;
-            try
+            public PassBookRepository()
             {
-                connection.Open();
-                var sqlDataReader = command.ExecuteReader();
-                if (sqlDataReader.HasRows)
+                _list = new List<TransactionData>();
+            }
+
+            public List<TransactionData> GetTransaction(string username)
+            {
+                var connection = new Connection().Connectiononobj;
+                string query = "select * from BankTransaction where Name= @username ";
+                var command = new SqlCommand(query, connection);
+                command.Parameters.Add("@username", SqlDbType.VarChar);
+                command.Parameters["@username"].Value = username;
+                try
                 {
-                    while (sqlDataReader.Read())
+                    connection.Open();
+                    var sqlDataReader = command.ExecuteReader();
+                    if (sqlDataReader.HasRows)
                     {
-                        var newLine = new TransactionData(sqlDataReader["Name"], sqlDataReader["Amount"], sqlDataReader["TransactionType"], sqlDataReader["TransactionDate"]);
-                        _list.Add(newLine);
+                        while (sqlDataReader.Read())
+                        {
+                            var newLine = new TransactionData(sqlDataReader["Name"], sqlDataReader["Amount"], sqlDataReader["TransactionType"], sqlDataReader["TransactionDate"]);
+                            _list.Add(newLine);
+                        }
                     }
+                    else
+                    {
+                        Console.WriteLine("Data not found");
+                    }
+                    return _list;
                 }
-                else
+                catch (Exception e)
                 {
-                    Console.WriteLine("Data not found");
+                    Console.WriteLine(e.Message);
+                    return _list;
                 }
-                return _list;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return _list;
-            }
-            finally
-            {
-                command.Dispose();
-                connection.Close();
-            }
+                finally
+                {
+                    command.Dispose();
+                    connection.Close();
+                }
 
+            }
         }
     }
-}

@@ -53,9 +53,8 @@ ORDER BY ENAME ASC;*/
 
 --select * from EMP where DEPTNO=10 AND JOB='MANAGER'
 --select * from EMP where COMM IS NULL;
---select 	LOWER(ENAME) from EMP
---select ENAME,COMM,(SAL*12+ISNULL(COMM, 0 )) from EMP
-
+select 	LOWER(ENAME) from EMP
+select ENAME,COMM,(SAL*12+ISNULL(COMM, 0 )) from EMP
 --select DISTINCT  DEPTNO from EMP  
 
 --select ENAME, HIREDATE ,convert(varchar,(YEAR(getdate())-year(HIREDATE)))YearEXP from EMP ;
@@ -70,3 +69,4 @@ ORDER BY ENAME ASC;*/
 --select AVG(SAL) Average from EMP 
 --select MAX(SAL) Maximum from EMP 
 --select MIn(SAL) Minimum from EMP 
+ 
