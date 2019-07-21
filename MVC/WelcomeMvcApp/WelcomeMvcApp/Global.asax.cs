@@ -9,9 +9,15 @@ namespace WelcomeMvcApp
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        protected void Session_Start()
+        {
+            Session["login"] = null;
+        }
+
         protected void Application_Start()
         {
-           // AreaRegistration.RegisterAllAreas();
+           
+            // AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }

@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@using System.Data.SqlClient
+@using DisplayEmployeeDetails.Model;
+@model IndexViewModel
+<head>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+</head>
+<h2>Index</h2>
+
+
+@using (@Html.BeginForm("Index", "DisplayEmployee", FormMethod.Post, new { id = "demoForm", name = "demoForm" }))
+
+{
+
+    @Html.DropDownListFor(m => m.DeptList,
+        new SelectList(ViewBag.departments, "DeptNo", "DeptName"),
+        "Select Depatrments",
+        new { @id = "ddId" })
+
+    <div id="div1">
+        <table>
+            @foreach (var e in @Model.EmployeList)
+            {
+                <tr>
+                    <td>
+                        @e.DEPTNO
+                    </td>
+                    <td>
+                        @e.ENAME
+                    </td>
+                    <td>
+                        @e.COMM
+                    </td>
+                    <td>
+                        @e.EMPNO
+                    </td>
+                    <td>
+                        @e.HIREDATE
+                    </td>
+                    <td>
+                        @e.JOB
+                    </td>
+                    <td>
+                        @e.MGR
+                    </td>
+                    <td>
+                        @e.SAL
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <script>
+        $(function () {
+
+            $('#ddId').on("change", function () {
+                var dept = $('#ddId option:selected').val();
+                var data = {};
+                data.DeptLocation = "1";
+                data.DeptName = "Mudassar";
+                data.DeptNo = dept;
+                $.post("/DisplayEmployee/Index", data, function (r) {
+
+                });
+            });
+        });
+    </script>
+
+
+}

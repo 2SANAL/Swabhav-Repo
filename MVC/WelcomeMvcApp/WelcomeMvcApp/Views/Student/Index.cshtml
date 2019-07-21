@@ -5,6 +5,7 @@
 }
 @using System.Web.UI.WebControls
 @using WelcomeMvcApp.Model.Student;
+@using WelcomeMvcApp.Servies;
 @using WelcomeMvcApp.BusinessModel;
 @model IndexViewModel
 
@@ -12,33 +13,38 @@
 
 <html>
 <head>
-    <link rel="stylesheet" Content="bootstrap.css"/>
-    <meta name="viewport" content="width=device-width"/>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <meta name="viewport" content="width=device-width" />
     <title>Index</title>
 </head>
 <body>
+    <a href="~/Student/Add">Add</a>
+
+
     <div>
-        <h1>No Of Student @Model.Count</h1>
+        <h1>Number Of Student :@Model.Count</h1>
         <table class="table table-hover">
             <tr>
                 <td><b>Name</b></td>
-                <td><b>RollNo</b></td>
+                <td><b>Id</b></td>
                 <td><b>Age</b></td>
                 <td><b>Cgpi</b></td>
                 <td><b>Location</b></td>
                 <td><b>Date Of Brith</b></td>
-
+                
             </tr>
+
             @foreach (var student in @Model.Students)
             {
-
                 <tr>
                     <td>@student.Name</td>
-                    <td>@student.RollNo</td>
-                    <td>@student.Age</td>
+                    <td>@student.Id</td>
+                    <td>@(@DateTime.Now.Year - @Convert.ToDateTime(student.DOB).Year)</td>
                     <td>@student.Cgpi</td>
                     <td>@student.Location</td>
-                    <td>@(@DateTime.Now.Year-@Convert.ToDateTime(student.DOB).Year)</td>
+                    <td>@student.DOB</td>
+                    <td>@Html.ActionLink("Edit", "Edit", "Student", new { RollNo = student.Id }, null)</td>
+                    <td>@Html.ActionLink("Delete", "Delete", "Student", new { RollNo = student.Id }, null)</td>
                 </tr>
             }
         </table>

@@ -1,0 +1,78 @@
+﻿
+@{
+    Layout = null;
+}
+@using WelcomeMvcApp.BusinessModel;
+@using WelcomeMvcApp.Model.DisplayEmp;
+@model DisplayEmpViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/Scripts/jquery-1.9.1.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script>
+        $(function () {
+            $('#ddId').on("change",
+                function () {
+                    var dept = $('#ddId option:selected').val();
+                    var data = {};
+                    data.DeptLocation = "";
+                    data.DeptName = "";
+                    data.DeptNo = dept;
+                    $.post("/DisplayEmployee/Index",
+                        data,
+                        function (r) {
+
+                        });
+                });
+        });
+    </script>
+</head>
+<body>
+    @using (@Html.BeginForm(FormMethod.Post))
+    {
+        <div id="div2">
+            @Html.DropDownListFor(m => m.DeptList,
+            new SelectList(ViewBag.departments, "DeptNo", "DeptName"),
+            "Select Depatrments",
+            new { @id = "ddId" })
+        </div>
+            <div id="div1">
+                <table>
+                    @foreach (var e in @Model.EmployeList)
+                {
+                        <tr>
+                            <td>
+                                @e.DEPTNO
+                            </td>
+                            <td>
+                                @e.ENAME
+                            </td>
+                            <td>
+                                @e.COMM
+                            </td>
+                            <td>
+                                @e.EMPNO
+                            </td>
+                            <td>
+                                @e.HIREDATE
+                            </td>
+                            <td>
+                                @e.JOB
+                            </td>
+                            <td>
+                                @e.MGR
+                            </td>
+                            <td>
+                                @e.SAL
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+    }
+</body>
+</html>

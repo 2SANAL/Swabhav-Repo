@@ -7,9 +7,213 @@ namespace EmployeeIenumerableApp
 {
     class Program
     {
-        private static IEnumerable<Employee> employees;
-        private static List<double> deptList = new List<double>();
+        private static IEnumerable<Employee> _employees;
+        private static IEnumerable<Departments> _departmentses;
         static void Main(string[] args)
+        {
+
+            CreateEmpDetails();
+            CreateDept();
+            // GetCountOfDeptNoEmp();
+            //  GetNoOfManager();
+            //  GetNOEmpInDept();
+            //GetDNameAndEname();
+            // GetBossAndEmp();
+            //  GetBossAndEmpAndDept();
+            //  GetNullDept();
+            // GetEmployeeOrderByAsc();
+            //GetEmpSalBetween5000And2000();
+            // GetEmpDeptNo10Or20();
+            //   GetEmpJobIsManager();
+            // GetEmpDeptIs10AndJobManager();
+            //   GetEmpCommIsNull();
+            //  GetLowerCaseEmpName();
+            // GetNameAndCommAndTotalSal();
+            //    GetDestingDeptNo();
+            //GetYearOfExp();
+            // GetEmpDeptNoIsScott();
+            // GetAllEmpJobSameAsBLAKE();
+            //           GetMgrIsKingEmpNo();
+            //  GetAgregates();
+        }
+
+        private static void GetNOEmpInDept()
+        {
+            var NOEmpInDept = _departmentses
+                .Join(_employees,
+                    dept => dept.DeptNo,
+                    emp => emp.DEPTNO,
+                    (departments, employee) => new
+                    {
+                        dept = departments.DeptName,
+                        emp = employee.ENAME
+                    })
+                .GroupBy((g) => new { g.dept, g.emp });
+
+
+            foreach (var e in NOEmpInDept)
+            {
+                Console.WriteLine(" " + e.Key.dept);
+            }
+
+        }
+        private static void GetNoOfManager()
+        {
+            var managerCount = _employees
+                .Where((m) => m.JOB.Equals("MANAGER") && m.DEPTNO.Equals(10))
+                .GroupBy((g) => new { g.DEPTNO, g.JOB })
+                .Select((m) => new { g = m.Key, c = m.Count() });
+
+            foreach (var manager in managerCount)
+            {
+                Console.WriteLine(manager.c + " " + manager.g.DEPTNO + " " + manager.g.JOB);
+            }
+        }
+
+        private static void GetCountOfDeptNoEmp()
+        {
+            var countOfDeptNo =
+                from employee in _employees
+                orderby employee.DEPTNO
+                group employee by employee.DEPTNO
+                into g
+                select new { no = g.Key, de = g.Count() };
+
+            foreach (var e in countOfDeptNo)
+            {
+                Console.WriteLine(e.de + " " + e.no);
+            }
+
+            Console.WriteLine("Job Wise Count");
+            var countJobWise =
+                from employee1 in _employees
+                orderby employee1.JOB
+                group employee1 by employee1.JOB
+                into g
+                select new { no = g.Key, job = g.Count() };
+
+            foreach (var e in countJobWise)
+            {
+                Console.WriteLine(e.no + " " + e.job);
+            }
+        }
+        private static void GetBossAndEmpAndDept()
+        {
+            var deptEmapMgr = _employees.Join(_employees,
+                emp1 => emp1.MGR,
+                emp2 => emp2.EMPNO,
+                (emp1, emp2) => new
+                {
+                    BossName = emp1.ENAME,
+                    ENAme = emp2.ENAME,
+                    EDept = emp2.DEPTNO
+                }
+            );
+
+            var innerjoin = deptEmapMgr.Join(
+                _departmentses,
+                d => d.EDept,
+                e => e.DeptNo,
+
+                (emp1, emp2) => new
+                {
+                    BossName = emp1.BossName,
+                    DName = emp2.DeptName,
+                    EName = emp1.ENAme
+                }
+
+            );
+
+
+            foreach (var data in innerjoin)
+            {
+                Console.WriteLine("Emap NAme :" + data.BossName + " BossName :" + data.EName + " Dept name:" + data.DName);
+            }
+        }
+
+        private static void GetBossAndEmp()
+        {
+            var innerjoin = _employees.Join(_employees,
+                emp1 => emp1.MGR,
+                emp2 => emp2.EMPNO,
+                (emp1, emp2) => new
+                {
+                    BossName = emp1.ENAME,
+                    ENAme = emp2.ENAME
+                }
+            );
+
+            foreach (var data in innerjoin)
+            {
+                Console.WriteLine("Emap NAme :" + data.BossName + " BossName :" + data.ENAme);
+            }
+        }
+        private static void GetNullDept()
+        {
+            var NullDept = from d in _departmentses
+                           join e in _employees.Where(o => o.EMPNO.Equals(null))
+                    on d.DeptNo equals e.EMPNO into g
+                           select new
+                           {
+                               dno = d.DeptNo,
+                               dname = d.DeptName,
+                               dlocation = d.DeptLocation
+                           };
+
+            foreach (var data in NullDept)
+            {
+                Console.WriteLine("dname :" + data.dname + " DNo :" + data.dno + " lo :" + data.dlocation);
+            }
+        }
+
+        private static void GetDNameAndEname()
+        {
+            var innerjoin = _employees.Join(_departmentses,
+                emp => emp.DEPTNO,
+                dept => dept.DeptNo,
+                (emp, dept) => new
+                {
+                    empName = emp.ENAME,
+                    depNAme = dept.DeptName
+                }
+            );
+
+            foreach (var data in innerjoin)
+            {
+                Console.WriteLine("Ename :" + data.empName + " DName :" + data.depNAme);
+            }
+        }
+
+
+        private static void CreateDept()
+        {
+            Departments dept1 = new Departments()
+            {
+                DeptName = "ACCOUNTING",
+                DeptLocation = "NEW YORK",
+                DeptNo = 10
+            };
+            Departments dept2 = new Departments()
+            {
+                DeptName = "RESEARCH",
+                DeptLocation = "DALLAS",
+                DeptNo = 20
+            };
+            Departments dept3 = new Departments()
+            {
+                DeptName = "SALES",
+                DeptLocation = "CHICAGO",
+                DeptNo = 30
+            };
+            Departments dept4 = new Departments()
+            {
+                DeptName = "OPERATIONS",
+                DeptLocation = "BOSTON",
+                DeptNo = 40
+            };
+            _departmentses = new List<Departments>() { dept1, dept2, dept3, dept4 };
+        }
+        private static void CreateEmpDetails()
         {
             Employee employee1 = new Employee()
             {
@@ -161,30 +365,22 @@ namespace EmployeeIenumerableApp
                 COMM = 0,
                 DEPTNO = 10
             };
-            employees = new List<Employee>()
+            _employees = new List<Employee>()
                 { employee1,employee2,employee3,employee4,employee5,employee6,employee7,employee8,employee9,
                     employee10,employee11,employee12,employee13,employee14};
-
-
-            // GetEmployeeOrderByAsc();
-            //GetEmpSalBetween5000And2000();
-            // GetEmpDeptNo10Or20();
-            //   GetEmpJobIsManager();
-            // GetEmpDeptIs10AndJobManager();
-            //   GetEmpCommIsNull();
-            //  GetLowerCaseEmpName();
-            // GetNameAndCommAndTotalSal();
-            //    GetDestingDeptNo();
-            //GetYearOfExp();
-            // GetEmpDeptNoIsScott();
-           // GetAllEmpJobSameAsBLAKE();
-           GetMgrIsKingEmpNo();
         }
-
+        private static void GetAgregates()
+        {
+            var totalEmp = _employees.Count();
+            Console.WriteLine("Avrage salary :" + _employees.Average((m) => m.SAL));
+            Console.WriteLine("MAx Salary :" + _employees.Max((m) => m.SAL));
+            Console.WriteLine("Min Salary :" + _employees.Min((m) => m.SAL));
+            Console.WriteLine("Total Count :" + totalEmp);
+        }
         private static void GetNameAndCommAndTotalSal()
         {
             var empNameAndCommAndTotalSal =
-                employees
+                _employees
                     .Select((emp) => new { emp.ENAME, emp.COMM, CTC = (emp.SAL * 12 + emp.DEPTNO) });
             Console.WriteLine("Name\tComm\tTotalSal");
             foreach (var emp in empNameAndCommAndTotalSal)
@@ -196,7 +392,7 @@ namespace EmployeeIenumerableApp
         private static void GetDestingDeptNo()
         {
             var empDeptNo =
-                employees.Distinct()
+                _employees.Distinct()
                     .Select((emp) => new { emp.DEPTNO });
             var DistNemp = empDeptNo.AsQueryable().Distinct();
 
@@ -209,7 +405,7 @@ namespace EmployeeIenumerableApp
         private static void GetTop3()
         {
             IEnumerable<Employee> empTop3 =
-                employees
+                _employees
                     .OrderByDescending((emp) => emp.JOB)
                     .Take(3);
             DisplayData(empTop3);
@@ -218,7 +414,7 @@ namespace EmployeeIenumerableApp
         private static void GetEmpDeptNoIsScott()
         {
             var empIsScott =
-                employees
+                _employees
                     .Where((emp) => emp.ENAME.Equals("SCOTT"))
                     .Select((emp) => new { emp.DEPTNO });
             double deptNo = 0;
@@ -228,7 +424,7 @@ namespace EmployeeIenumerableApp
             }
 
             IEnumerable<Employee> getEmp =
-                employees
+                _employees
                     .Where((s) => s.DEPTNO == deptNo);
             DisplayData(getEmp);
 
@@ -237,7 +433,7 @@ namespace EmployeeIenumerableApp
         private static void GetAllEmpJobSameAsBLAKE()
         {
             var empIsBlake =
-                employees
+                _employees
                     .Where((emp) => emp.ENAME.Equals("BLAKE"))
                     .Select((emp) => new { emp.JOB });
             string job = "";
@@ -247,7 +443,7 @@ namespace EmployeeIenumerableApp
             }
 
             IEnumerable<Employee> getEmp =
-                employees
+                _employees
                     .Where((s) => s.JOB.Equals(job));
             DisplayData(getEmp);
         }
@@ -255,25 +451,25 @@ namespace EmployeeIenumerableApp
         private static void GetMgrIsKingEmpNo()
         {
             var empIsBlake =
-                employees
+                _employees
                     .Where((emp) => emp.ENAME.Equals("KING"))
                     .Select((emp) => new { emp.EMPNO });
-            double empNo=0 ;
+            double empNo = 0;
             foreach (var emp in empIsBlake)
             {
                 empNo = emp.EMPNO;
             }
 
             IEnumerable<Employee> getEmp =
-                employees
-                    .Where((s) => s.MGR==empNo);
+                _employees
+                    .Where((s) => s.MGR == empNo);
             DisplayData(getEmp);
         }
 
         private static void GetYearOfExp()
         {
             var empNameHDateExp =
-                employees
+                _employees
                     .Select((emp) => new
                     { emp.ENAME, emp.HIREDATE, YearOfExpe = (DateTime.Now.Year - Convert.ToDateTime(emp.HIREDATE).Year) });
 
@@ -287,7 +483,7 @@ namespace EmployeeIenumerableApp
         private static void GetLowerCaseEmpName()
         {
             var empLowerCaseEmpName =
-                employees
+                _employees
                     .Select((emp) => new { Name = emp.ENAME.ToLower() });
             foreach (var EName in empLowerCaseEmpName)
             {
@@ -298,7 +494,7 @@ namespace EmployeeIenumerableApp
         private static void GetEmployeeOrderByAsc()
         {
             IEnumerable<Employee> empOrderByNameAsc =
-                employees
+                _employees
                     .OrderBy((emp) => emp.ENAME);
             DisplayData(empOrderByNameAsc);
         }
@@ -306,7 +502,7 @@ namespace EmployeeIenumerableApp
         private static void GetEmpSalBetween5000And2000()
         {
             IEnumerable<Employee> employeesSalBetween5000And2000 =
-                employees
+                _employees
                     .Where((emp) => emp.SAL < 5000 && emp.SAL > 2000);
             DisplayData(employeesSalBetween5000And2000);
         }
@@ -314,7 +510,7 @@ namespace EmployeeIenumerableApp
         private static void GetEmpDeptNo10Or20()
         {
             IEnumerable<Employee> employeesDeptNo10Or20 =
-                employees
+                _employees
                     .Where((emp) => emp.DEPTNO == 10 || emp.DEPTNO == 20);
             DisplayData(employeesDeptNo10Or20);
         }
@@ -322,7 +518,7 @@ namespace EmployeeIenumerableApp
         private static void GetEmpJobIsManager()
         {
             var employeesJobIsManager =
-                 employees
+                 _employees
                      .Where((emp) => emp.JOB.Equals("MANAGER"))
                      .Select((employee) => new { employee.ENAME });
 
@@ -335,7 +531,7 @@ namespace EmployeeIenumerableApp
         private static void GetEmpDeptIs10AndJobManager()
         {
             IEnumerable<Employee> employeesDeptIs10AndJobManager =
-                employees
+                _employees
                     .Where((emp) => emp.DEPTNO == 10 && emp.JOB.Equals("MANAGER"));
             DisplayData(employeesDeptIs10AndJobManager);
         }
@@ -343,7 +539,7 @@ namespace EmployeeIenumerableApp
         private static void GetEmpCommIsNull()
         {
             IEnumerable<Employee> employeesCommIsNull =
-                employees
+                _employees
                     .Where((emp) => emp.COMM == 0);
             DisplayData(employeesCommIsNull);
         }

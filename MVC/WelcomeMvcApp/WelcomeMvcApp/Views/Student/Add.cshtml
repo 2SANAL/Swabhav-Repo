@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+@using WelcomeMvcApp.Model.Student;
+@using WelcomeMvcApp.BusinessModel;
+@model AddViewModel
+
+
+<!DOCTYPE html>
+
+@using (@Html.BeginForm(FormMethod.Post))
+{
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Add</title>
+    </head>
+    <body>
+        <p> @Model.Error</p>
+        <p>
+            Student Name:@Html.TextBoxFor((m) => m.StudentName)
+        </p>
+        <p>
+            Student Location: @Html.TextBoxFor((m) => m.StudentLocation)
+        </p>
+        <p>
+            Student Id: @Html.TextBoxFor((m) => m.StudentRollNo)
+        </p>
+        <p>
+            Student Ggpi: @Html.TextBoxFor((m) => m.StudentGgpi)
+        </p>
+        <p>
+            Student Date of Birth: @Html.TextBoxFor((m) => m.StudentDOB)
+        </p>
+        <p><input type="submit" value="Add" /></p>
+    </body>
+</html>
+
+}
+

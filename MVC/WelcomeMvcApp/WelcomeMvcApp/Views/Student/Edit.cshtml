@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+@using WelcomeMvcApp.Model.Student;
+@using WelcomeMvcApp.BusinessModel;
+@model EditViewModel
+
+<!DOCTYPE html>
+@using (@Html.BeginForm(FormMethod.Post))
+{
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Edit</title>
+    </head>
+    <body>
+        <div>
+            <p>@Model.Error</p>
+            <p>
+                Student Id:@Html.TextBoxFor((m) => m.EditRollNo)
+            </p>
+            <p>
+                Student Name:@Html.TextBoxFor((m) => m.EditName)
+            </p>
+
+            <p>
+                Student CGPI :@Html.TextBoxFor((m) => m.EditCgpi)
+            </p>
+            <p>
+                Student Location:@Html.TextBoxFor((m) => m.EditLocation)
+            </p>
+            <p>
+                Student DOB:@Html.TextBoxFor((m) => m.EditDOB)
+            </p>
+            <p> <input type="submit" value="Edit" /></p>
+                
+        </div>
+    </body>
+</html>
+}

@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+@using WelcomeMvcApp.Model.Registration;
+@using WelcomeMvcApp.Controllers;
+@model RegistrationViewModel
+
+@using (@Html.BeginForm(FormMethod.Post))
+{
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <script src="~/Scripts/jquery-1.9.1.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+    </head>
+    <body>
+        <div>
+            <p>Registration Form</p>
+
+            <p>Name :@Html.TextBoxFor((m) => m.Name) @Html.ValidationMessageFor((m) => m.Name)</p>
+            <p>Age:@Html.TextBoxFor((m) => m.Age)@Html.ValidationMessageFor((m) => m.Age)</p>
+            <p>Salary:@Html.TextBoxFor((m) => m.Salary)@Html.ValidationMessageFor((m) => m.Salary)</p>
+            <p>Email:@Html.TextBoxFor((m) => m.Email)@Html.ValidationMessageFor((m) => m.Email)</p>
+            <p><input type="submit" value="Submit" /></p>
+        </div>
+        <h2 style="color: green"><b>@Model.Message</b><br /></h2>
+        <h4 style="color: green">
+
+            <b>@Model.Name</b><br />
+            <b>@Model.Age</b><br />
+            <b> @Model.Salary</b><br />
+            <b>@Model.Email</b><br />
+        </h4>
+    </body>
+</html>
+}

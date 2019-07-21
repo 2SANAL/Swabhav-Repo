@@ -2,11 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WelcomeMvcApp.Servies;
 
 namespace WelcomeMvcApp.Model.Student
 {
+
     public class IndexViewModel
     {
+        Authentrication a;
+
+        public IndexViewModel()
+        {
+            a = new Authentrication();
+            _user = a.User;
+        }
+        private string _user;
         public int Count
         {
             get;
@@ -19,5 +29,9 @@ namespace WelcomeMvcApp.Model.Student
             set;
         }
 
+        public string User
+        {
+            get { return _user; }
+        }
     }
 }
