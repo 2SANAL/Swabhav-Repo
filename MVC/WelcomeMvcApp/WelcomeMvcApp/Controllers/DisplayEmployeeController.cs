@@ -32,7 +32,8 @@ namespace WelcomeMvcApp.Controllers
         public ActionResult Index(Department d)
         {
             ViewBag.departments = _servies.DepartmentsList;
-            _displayEmpViewModel.EmployeList = _servies.GetDeptWisEmployees(d.DeptNo);
+            //    _displayEmpViewModel.EmployeList = _servies.GetDeptWisEmployees(d.DeptNo);
+            _displayEmpViewModel.EmployeList = _servies.GetDeptWisEmployees(10 );
             _displayEmpViewModel.DeptList = _servies.DepartmentsList;
             return View(_displayEmpViewModel);
         }
