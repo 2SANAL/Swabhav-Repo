@@ -33,12 +33,13 @@
                 <tr>
                     <td>@emp.Id</td>
                     <td>@emp.EmployeeName</td>
-                    <td>@emp.JOB</td>
+                    <td>@emp.Job</td>
                     <td>@emp.Salary</td>
-                    <td>@emp.COMM</td>
+                    <td>@emp.Comm</td>
                     <td>@emp.DateOfJoin</td>
                     <td>11</td>
                     <td>@emp.Department.Id</td>
+                    <td>@Html.ActionLink("Edit","EditEmployee","Employee",new {id=@emp.Id},null)</td>
                 </tr>
             }
         </table>

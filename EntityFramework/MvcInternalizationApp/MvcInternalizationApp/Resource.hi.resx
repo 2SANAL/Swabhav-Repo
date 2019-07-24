@@ -118,51 +118,51 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Addres" xml:space="preserve">
-    <value>Address</value>
+    <value />
   </data>
   <data name="AddresRequired" xml:space="preserve">
-    <value>Please Enter Your Address</value>
+    <value />
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
-    <value>Confirm Password</value>
+    <value>पासवर्ड की पुष्टि कीजिये</value>
   </data>
   <data name="ConfirmPasswordCompare" xml:space="preserve">
-    <value>Confirm Password doesn't matched</value>
+    <value>पासवर्ड की पुष्टि करें</value>
   </data>
   <data name="ConfirmPasswordRequried" xml:space="preserve">
-    <value>Please Enter Confirm Password</value>
+    <value>पासवर्ड की पुष्टि करें</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>English</value>
+    <value>अंग्रेज़ी</value>
   </data>
   <data name="Hindi" xml:space="preserve">
-    <value>Hindi</value>
+    <value>हिंदी</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Name</value>
+    <value>नाम </value>
   </data>
   <data name="NameRequried" xml:space="preserve">
-    <value>Please Enter your Name</value>
+    <value>नाम (जरूरी)</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>पासवर्ड </value>
   </data>
   <data name="PasswordRequried" xml:space="preserve">
-    <value>Please Enter your Password</value>
+    <value>पासवर्ड आवश्यक</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>बचाना</value>
   </data>
   <data name="SelectLanguage" xml:space="preserve">
-    <value>Select Language</value>
+    <value>शीर्षक भाषा</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>User Regisration</value>
+    <value>शीर्षक</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>User Name</value>
+    <value>उपयोगकर्ता नाम</value>
   </data>
   <data name="UsernameRequried" xml:space="preserve">
-    <value>Please Enter your User Name</value>
+    <value>उपयोगकर्ता का नाम (आवश्यक</value>
   </data>
 </root>

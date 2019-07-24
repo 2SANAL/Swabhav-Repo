@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+@using DepartmentMvcApp.Model;
+@using DepartmentMvcApp.ResourceFiles;
+@model EditEmployeeViewModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditEmployee</title>
+</head>
+<body>
+@Html.ActionLink("Home","Index","Department")&nbsp;&nbsp;
+@Html.ActionLink("All Employee", "EmployeDetails", "Employee")
+<h3>Edit Employee</h3>
+<div>
+    @using (@Html.BeginForm(FormMethod.Post))
+    {
+        <p> @EmployeeResourcesFile.EName:@Html.TextBoxFor(m => m.EmployeeName)</p>
+        <p> @EmployeeResourcesFile.Job:@Html.TextBoxFor(m => m.Job)</p>
+        <p> @EmployeeResourcesFile.COM:@Html.TextBoxFor(m => m.Comm)</p>
+        <p> @EmployeeResourcesFile.DOJ:@Html.TextBoxFor(m => m.DateOfJoin)</p>
+        <p> @EmployeeResourcesFile.SAL:@Html.TextBoxFor(m => m.Salary)</p>
+        <input type="submit" value="Save"/>
+    }
+</div>
+</body>
+</html>

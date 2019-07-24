@@ -39,7 +39,7 @@ namespace DepartmentMvcApp.Servies
 
         public void Update(EditViewModel editViewModel)
         {
-            _repository.Update(editViewModel);
+            _repository.UpdateDept(editViewModel);
         }
 
     }

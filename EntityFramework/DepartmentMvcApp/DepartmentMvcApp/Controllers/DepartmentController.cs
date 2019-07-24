@@ -3,62 +3,68 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using DepartmentMvcApp.BusinessModel;
+using DepartmentMvcApp.Filter;
 using DepartmentMvcApp.Model;
-using DepartmentMvcApp.Repository;
 using DepartmentMvcApp.Servies;
 
 namespace DepartmentMvcApp.Controllers
 {
     public class DepartmentController : Controller
     {
-        private readonly DepartmentServies _servies = new DepartmentServies();
-        private readonly LoginServies _loginServies = new LoginServies();
-        private readonly IndexViewModel _indexViewModel = new IndexViewModel();
+        private readonly DepartmentServies _department;
+        private readonly LoginServies _login;
+        private readonly IndexViewModel _indexViewModel;
 
         // GET: Department
-        
+        public DepartmentController()
+        {
+            _department = new DepartmentServies();
+            _login = new LoginServies();
+            _indexViewModel = new IndexViewModel();
+        }
+        [LoggerFilter]
         public ActionResult Index()
         {
-            _indexViewModel.Departments = _servies.GetDepatDepartments().ToList();
+            _indexViewModel.Departments = _department.GetDepatDepartments().ToList();
             _indexViewModel.Count = _indexViewModel.Departments.Count;
             return View(_indexViewModel);
         }
-       [Authorize]
+        [Authorize]
         [HttpGet]
         public ActionResult Add()
         {
             AddViewModel addViewModel = new AddViewModel();
             return View(addViewModel);
         }
-
+        [LoggerFilter]
         [HttpPost]
         public ActionResult Add(AddViewModel addViewModel)
         {
-            _servies.AddDepartments(_servies.ConvertToDeptObj(addViewModel));
+            _department.AddDepartments(_department.ConvertToDeptObj(addViewModel));
             return RedirectToAction("Index");
         }
-
+        [LoggerFilter]
         [HttpGet]
         public ActionResult Edit(Guid id)
         {
             EditViewModel editViewModel = new EditViewModel();
-            Department dept = new Department();
-            dept = _servies.GetDeptById(id);
+            Department department;
+            department = _department.GetDeptById(id);
 
             editViewModel.Id = id;
-            editViewModel.DepartmentName = dept.DepartmentName;
-            editViewModel.Location = dept.Location;
+            editViewModel.DepartmentName = department.DepartmentName;
+            editViewModel.Location = department.Location;
 
             return View(editViewModel);
         }
-
+        [LoggerFilter]
         [HttpPost]
         public ActionResult Edit(EditViewModel editViewModel)
         {
-            _servies.Update(editViewModel);
+            _department.Update(editViewModel);
             return RedirectToAction("Index", "Department");
         }
-
+        [LoggerFilter]
         [HttpGet]
         public ActionResult Login()
         {
@@ -67,12 +73,12 @@ namespace DepartmentMvcApp.Controllers
             return View(loginViewModel);
 
         }
-
+        [LoggerFilter]
         [HttpPost]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
-            bool isValid = _loginServies.IsValidUser(loginViewModel);
-            if (isValid == true)
+            bool isValid = _login.IsValidUser(loginViewModel);
+            if (isValid.Equals(true) )
             {
                 FormsAuthentication.SetAuthCookie(loginViewModel.Username, false);
                 return RedirectToAction("Index", "Department");

@@ -8,7 +8,7 @@ namespace DepartmentMvcApp.BusinessModel
 
         public Entity()
         {
-            this.Id= Guid.NewGuid();
+            Id= Guid.NewGuid();
         }
     }
 }

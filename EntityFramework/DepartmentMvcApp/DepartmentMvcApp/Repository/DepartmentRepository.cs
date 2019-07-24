@@ -2,69 +2,86 @@
 using System.Linq;
 using DepartmentMvcApp.BusinessModel;
 using DepartmentMvcApp.Model;
-using DepartmentMvcApp.Views.Department;
-using DepartmentMvcApp.Views.Department;
 
 namespace DepartmentMvcApp.Repository
 {
     public class DepartmentRepository
     {
-        private readonly AurionProContext dbContext = new AurionProContext();
+        private readonly AurionProContext _dbContext;
+
+        public DepartmentRepository()
+        {
+            _dbContext = new AurionProContext();
+        }
 
         public void AddDept(Department department)
         {
-            dbContext.Departments.Add(department);
-            dbContext.SaveChanges();
+            _dbContext.Departments.Add(department);
+            _dbContext.SaveChanges();
         }
 
         public IQueryable<Department> GetDepartments()
         {
-            var departments = dbContext.Departments;
+            var departments = _dbContext.Departments;
             return departments;
         }
 
         public void AddUser(Login login)
         {
-            dbContext.Logins.Add(login);
-            dbContext.SaveChanges();
+            _dbContext.Logins.Add(login);
+            _dbContext.SaveChanges();
         }
         public void AddEmployee(Employee employee)
         {
-            dbContext.Employees.Add(employee);
-            dbContext.SaveChanges();
+            _dbContext.Employees.Add(employee);
+            _dbContext.SaveChanges();
         }
 
         public IQueryable<Employee> GetEmployees()
         {
-            var employees = dbContext.Employees;
+            var employees = _dbContext.Employees;
             return employees;
         }
 
 
         public IQueryable<Employee> GetEmployeesByDeptId(Guid id)
         {
-            var employees = dbContext.Employees.Where((m) => m.Department.Id == id);
+            var employees = _dbContext.Employees.Where((m) => m.Department.Id == id);
             return employees;
         }
 
         public Department GetDepartmentById(Guid id)
         {
-            var dept = dbContext.Departments.Find(id);
+            var dept = _dbContext.Departments.Find(id);
             return dept;
         }
-
-        public void Update(EditViewModel editViewModel)
+        public Employee GetEmployeeById(Guid id)
         {
-            var u = dbContext.Departments.Single(s=>s.Id==editViewModel.Id);
-            u.DepartmentName = editViewModel.DepartmentName;
-            u.Location = editViewModel .Location;
-            dbContext.SaveChanges();
-
+            var employee = _dbContext.Employees.Find(id);
+            return employee;
         }
 
+        public void UpdateDept(EditViewModel editViewModel)
+        {
+            var u = _dbContext.Departments.Single(s => s.Id == editViewModel.Id);
+            u.DepartmentName = editViewModel.DepartmentName;
+            u.Location = editViewModel.Location;
+            _dbContext.SaveChanges();
+        }
+
+        public void UpdateEmp(EditEmployeeViewModel editEmployeeViewModel)
+        {
+            var u = _dbContext.Employees.Single(s => s.Id == editEmployeeViewModel.Id);
+            u.Comm = Convert.ToDouble(editEmployeeViewModel.Comm);
+            u.DateOfJoin = editEmployeeViewModel.DateOfJoin;
+            u.EmployeeName = editEmployeeViewModel.EmployeeName;
+            u.Job = editEmployeeViewModel.Job;
+            u.Salary = Convert.ToDouble(editEmployeeViewModel.Salary);
+            _dbContext.SaveChanges();
+        }
         public bool IsValidUser(LoginViewModel loginViewModel)
         {
-            int isvalid = dbContext.Logins.Where(m =>
+            int isvalid = _dbContext.Logins.Where(m =>
                 m.Username.Equals(loginViewModel.Password) && m.Password.Equals(loginViewModel.Password)).Count();
             if (isvalid > 0)
             {

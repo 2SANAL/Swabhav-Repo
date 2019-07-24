@@ -9,6 +9,11 @@ namespace MvcInternalizationApp
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        protected void Session_Start()
+        {
+            Session["CurrentCulture"] = "hi";
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

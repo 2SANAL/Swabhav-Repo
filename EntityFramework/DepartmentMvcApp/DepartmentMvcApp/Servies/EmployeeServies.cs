@@ -15,10 +15,10 @@ namespace DepartmentMvcApp.Servies
         {
             Employee employee = new Employee();
 
-            employee.COMM = Convert.ToDouble(addEmployeeViewModel.COMM);
+            employee.Comm = Convert.ToDouble(addEmployeeViewModel.Comm);
             employee.DateOfJoin = addEmployeeViewModel.DateOfJoin;
             employee.EmployeeName = addEmployeeViewModel.EmployeeName;
-            employee.JOB = addEmployeeViewModel.JOB;
+            employee.Job = addEmployeeViewModel.Job;
             employee.Salary = Convert.ToDouble(addEmployeeViewModel.Salary);
             employee.Department = _repository.GetDepartmentById(Guid.Parse(addEmployeeViewModel.DeptId));
 
@@ -38,6 +38,23 @@ namespace DepartmentMvcApp.Servies
         {
             var employees = _repository.GetEmployeesByDeptId(id);
             return employees;
+        }
+        public EditEmployeeViewModel GetEmployeeById(Guid id)
+        {
+            var employee = _repository.GetEmployeeById(id);
+            EditEmployeeViewModel edit = new EditEmployeeViewModel();
+            edit.Salary = Convert.ToString(employee.Salary);
+            edit.EmployeeName = (employee.EmployeeName);
+            edit.Comm = Convert.ToString(employee.Comm);
+            edit.DateOfJoin = (employee.DateOfJoin);
+            edit.Job = (employee.Job);
+            edit.Id = employee.Id;
+            return edit;
+        }
+
+        public void UpdateEmp(EditEmployeeViewModel editEmployeeViewModel)
+        {
+            _repository.UpdateEmp(editEmployeeViewModel);
         }
     }
 }

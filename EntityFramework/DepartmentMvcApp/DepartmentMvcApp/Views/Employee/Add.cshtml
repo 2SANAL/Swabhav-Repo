@@ -22,8 +22,8 @@
             <p>@EmployeeResourcesFile.Dname:@Html.DropDownListFor(model => model.DeptId, new SelectList(Model.Departments, "Id", "DepartmentName"), "- Please Select -")</p>
             <p>@EmployeeResourcesFile.EName:@Html.TextBoxFor(m => m.EmployeeName)</p>
             <p>@EmployeeResourcesFile.DOJ:@Html.TextBoxFor(m => m.DateOfJoin)</p>
-            <p>@EmployeeResourcesFile.Job:@Html.TextBoxFor(m => m.JOB)</p>
-            <p>@EmployeeResourcesFile.COM:@Html.TextBoxFor(m => m.COMM)</p>
+            <p>@EmployeeResourcesFile.Job:@Html.TextBoxFor(m => m.Job)</p>
+            <p>@EmployeeResourcesFile.COM:@Html.TextBoxFor(m => m.Comm)</p>
             <p>@EmployeeResourcesFile.SAL:@Html.TextBoxFor(m => m.Salary)</p>
             <input type="submit" value="Add">
         }

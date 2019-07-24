@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using DepartmentMvcApp.BusinessModel;
 
 namespace DepartmentMvcApp.Model
 {
-    public class AddEmployeeViewModel
+    public class EditEmployeeViewModel
     {
         [Required]
         public string EmployeeName { get; set; }
@@ -18,7 +17,6 @@ namespace DepartmentMvcApp.Model
         public string Comm { get; set; }
         [Required]
         public string DeptId { get; set; }
-        public List<Department> Departments { get; set; }
-
+        public Guid Id { get; set; }
     }
 }

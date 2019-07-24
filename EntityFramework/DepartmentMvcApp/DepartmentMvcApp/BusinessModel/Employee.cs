@@ -8,8 +8,8 @@ namespace DepartmentMvcApp.BusinessModel
         public string EmployeeName { get; set; }
         public string DateOfJoin { get; set; }
         public double Salary { get; set; }
-        public string JOB { get; set; }
-        public double COMM { get; set; }
+        public string Job { get; set; }
+        public double Comm { get; set; }
         public virtual Department Department { get; set; }
     }
 }

@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace DepartmentMvcApp.Model
 {
     public class EditViewModel
     {
+        [Required]
         public string DepartmentName { get; set; }
+        [Required]
         public string Location { get; set; }
         public  Guid Id { get; set; }
     }
