@@ -146,6 +146,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\DisplayEmp\DisplayEmpViewModel.cs" />
+    <Compile Include="Model\Registration\PasswordValidation.cs" />
     <Compile Include="Model\Registration\RegistrationViewModel.cs" />
     <Compile Include="Model\Student\AddViewModel.cs" />
     <Compile Include="Model\Student\EditViewModel.cs" />

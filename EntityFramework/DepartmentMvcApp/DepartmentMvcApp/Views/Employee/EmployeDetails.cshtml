@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+@using DepartmentMvcApp.BusinessModel;
+@using DepartmentMvcApp.Model;
+@using DepartmentMvcApp.ResourceFiles
+@model EmployeeViewModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EmployeDetails</title>
+</head>
+<body>
+    <p>Total Employee:@Model.Count</p>
+    <p>@Html.ActionLink("Home", "Index", "Department") &nbsp;&nbsp;&nbsp; @Html.ActionLink("Add", "Add", "Employee")</p>
+
+    <div>
+        <table class="tab-content">
+            <tr>
+                <th>@EmployeeResourcesFile.Id</th>
+                <th>@EmployeeResourcesFile.EName</th>
+                <th>@EmployeeResourcesFile.Job</th>
+                <th>@EmployeeResourcesFile.SAL</th>
+                <th>@EmployeeResourcesFile.COM</th>
+                <th>@EmployeeResourcesFile.DOJ</th>
+                <th>@EmployeeResourcesFile.MGR</th>
+                <th>@EmployeeResourcesFile.DeptNo</th>
+            </tr>
+            @foreach (var emp in @Model.Employees)
+            {
+                <tr>
+                    <td>@emp.Id</td>
+                    <td>@emp.EmployeeName</td>
+                    <td>@emp.JOB</td>
+                    <td>@emp.Salary</td>
+                    <td>@emp.COMM</td>
+                    <td>@emp.DateOfJoin</td>
+                    <td>11</td>
+                    <td>@emp.Department.Id</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

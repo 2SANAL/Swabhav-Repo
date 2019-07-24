@@ -10,5 +10,7 @@ namespace WelcomeMvcApp.Model.DisplayEmp
     {
         public IEnumerable<Employee> EmployeList { get; set; }
         public IEnumerable<Department> DeptList { get; set; }
+        public int DepaTNO { get; set; }
+        
     }
 }

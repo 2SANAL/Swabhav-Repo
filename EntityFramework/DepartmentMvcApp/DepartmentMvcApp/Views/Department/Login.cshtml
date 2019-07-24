@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+@using DepartmentMvcApp.Model;
+@model LoginViewModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+<div>
+    @using (@Html.BeginForm(FormMethod.Post))
+    {
+        <p>Uername:@Html.TextBoxFor(m=>m.Username)</p>
+        <p>Password:@Html.TextBoxFor(m=>m.Password)</p>
+                                                   <input type="submit" value="Login"/>
+    }
+
+</div>
+</body>
+</html>

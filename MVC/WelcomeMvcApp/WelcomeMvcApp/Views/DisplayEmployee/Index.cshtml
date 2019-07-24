@@ -13,33 +13,20 @@
     <script src="~/Scripts/jquery-1.9.1.js"></script>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
-    <script>
-        $(function () {
-            $('#ddId').on("change",
-                function () {
-                    var dept = $('#ddId option:selected').val();
-                    var data = {};
-                    data.DeptLocation = "";
-                    data.DeptName = "";
-                    data.DeptNo = dept;
-                    $.post("/DisplayEmployee/Index",
-                        data,
-                        function (r) {
 
-                        });
-                });
-        });
-    </script>
 </head>
 <body>
     @using (@Html.BeginForm(FormMethod.Post))
     {
         <div id="div2">
-            @Html.DropDownListFor(m => m.DeptList,
-            new SelectList(ViewBag.departments, "DeptNo", "DeptName"),
-            "Select Depatrments",
-            new { @id = "ddId" })
+            @Html.DropDownListFor(m => m.DepaTNO,
+                new SelectList(ViewBag.departments, "DeptNo", "DeptName"),
+                "Select Depatrments")
+
         </div>
+        <input type="submit" value="Submit"/>
+       
+    }
             <div id="div1">
                 <table>
                     @foreach (var e in @Model.EmployeList)
@@ -73,6 +60,6 @@
                     }
                 </table>
             </div>
-    }
+    
 </body>
 </html>

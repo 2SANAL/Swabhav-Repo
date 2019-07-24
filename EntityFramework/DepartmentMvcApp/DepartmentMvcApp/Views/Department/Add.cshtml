@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+@using DepartmentMvcApp.Model;
+@using DepartmentMvcApp.Views.Department
+@model AddViewModel
+
+
+
+<h2>@Index.Add</h2>
+
+@using (@Html.BeginForm(FormMethod.Post))
+{
+    <p>
+        @Index.EnterName:@Html.TextBoxFor((m) => m.DepartmentName)
+    </p>
+    <p>
+        @Index.EnterLocation:@Html.TextBoxFor((m) => m.Location)
+    </p>
+    <input type="submit" value="Add" />
+}
+

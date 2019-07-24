@@ -26,6 +26,7 @@
             <p>Age:@Html.TextBoxFor((m) => m.Age)@Html.ValidationMessageFor((m) => m.Age)</p>
             <p>Salary:@Html.TextBoxFor((m) => m.Salary)@Html.ValidationMessageFor((m) => m.Salary)</p>
             <p>Email:@Html.TextBoxFor((m) => m.Email)@Html.ValidationMessageFor((m) => m.Email)</p>
+            <p>Password :@Html.TextBoxFor((m)=>m.Password)@Html.ValidationMessageFor((m)=>m.Password)</p>
             <p><input type="submit" value="Submit" /></p>
         </div>
         <h2 style="color: green"><b>@Model.Message</b><br /></h2>

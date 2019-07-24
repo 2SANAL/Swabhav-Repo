@@ -12,29 +12,33 @@ namespace WelcomeMvcApp.Controllers
 {
     public class DisplayEmployeeController : Controller
     {
-        private readonly EmployeServies _servies = new EmployeServies();
-        private readonly DisplayEmpViewModel _displayEmpViewModel = new DisplayEmpViewModel();
+        private readonly EmployeServies _servies;
+        private readonly DisplayEmpViewModel _displayEmpViewModel;
 
+
+        public DisplayEmployeeController()
+        {
+            _servies = new EmployeServies();
+            _displayEmpViewModel = new DisplayEmpViewModel();
+        }
         // GET: DisplayEmployee
         [HttpGet]
         public ActionResult Index()
         {
-            _servies.CreateDeptList();
-            _servies.CreateEmployeeList();
-
-            _displayEmpViewModel.EmployeList = _servies.EmployeeList;
-            _displayEmpViewModel.DeptList = _servies.DepartmentsList;
-            ViewBag.departments = _servies.DepartmentsList;
+            ViewBag.departments = _servies.CreateDeptList();
+            _displayEmpViewModel.EmployeList = _servies.CreateEmployeeList();
+            _displayEmpViewModel.DeptList = ViewBag.departments;
+            ViewBag.departments = _displayEmpViewModel.DeptList;
 
             return View(_displayEmpViewModel);
         }
         [HttpPost]
-        public ActionResult Index(Department d)
+        public ActionResult Index(DisplayEmpViewModel deDisplayEmpViewModel)
         {
-            ViewBag.departments = _servies.DepartmentsList;
-            //    _displayEmpViewModel.EmployeList = _servies.GetDeptWisEmployees(d.DeptNo);
-            _displayEmpViewModel.EmployeList = _servies.GetDeptWisEmployees(10 );
-            _displayEmpViewModel.DeptList = _servies.DepartmentsList;
+            _servies.CreateEmployeeList();
+            ViewBag.departments = _servies.CreateDeptList();
+            _displayEmpViewModel.EmployeList = _servies.GetDeptWisEmployees(deDisplayEmpViewModel.DepaTNO);
+            _displayEmpViewModel.DeptList = ViewBag.departments;
             return View(_displayEmpViewModel);
         }
     }

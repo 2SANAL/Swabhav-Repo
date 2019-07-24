@@ -17,5 +17,7 @@ namespace WelcomeMvcApp.Model.Registration
         [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "Please Provide Valid Email")]
         public string Email { get; set; }
         public  string Message { get; set; }
+        [PasswordValidation]
+       public  string Password { get; set; }
     }
 }

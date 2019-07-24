@@ -8,20 +8,12 @@ namespace WelcomeMvcApp.Servies
 {
     public class EmployeServies
     {
-        private List<Employee> _employeesList = new List<Employee>();
-        private List<Department> _departmentsList = new List<Department>();
+        private List<Employee> _employeesList;
+        private List<Department> _departmentsList;
 
-        public List<Employee> EmployeeList
-        {
-            get { return _employeesList; }
-        }
 
-        public List<Department> DepartmentsList
-        {
-            get { return _departmentsList; }
-        }
 
-        public void CreateEmployeeList()
+        public List<Employee> CreateEmployeeList()
         {
             Employee employee1 = new Employee()
             {
@@ -176,9 +168,10 @@ namespace WelcomeMvcApp.Servies
             _employeesList = new List<Employee>()
                 { employee1,employee2,employee3,employee4,employee5,employee6,employee7,employee8,employee9,
                     employee10,employee11,employee12,employee13,employee14};
+            return _employeesList;
         }
 
-        public void CreateDeptList()
+        public List<Department> CreateDeptList()
         {
             Department dept1 = new Department()
             {
@@ -205,14 +198,13 @@ namespace WelcomeMvcApp.Servies
                 DeptNo = 40
             };
             _departmentsList = new List<Department>() { dept1, dept2, dept3, dept4 };
+            return _departmentsList;
         }
 
 
         public List<Employee> GetDeptWisEmployees(int deptNo)
         {
             List<Employee> newList = new List<Employee>();
-            CreateEmployeeList();
-            CreateDeptList();
             foreach (var employee in _employeesList)
             {
                 if (employee.DEPTNO == deptNo)
