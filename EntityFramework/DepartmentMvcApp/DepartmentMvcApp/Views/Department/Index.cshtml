@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 @using DepartmentMvcApp.Model;
@@ -9,8 +8,8 @@
 <h2>@Index.DepartmentHead</h2>
 
 @Html.ActionLink("Add Departments", "Add", "Department")&nbsp;&nbsp;&nbsp;
-@Html.ActionLink("Employee Details", "EmployeDetails", "Employee")
-
+@Html.ActionLink("Employee Details", "EmployeDetails", "Employee")&nbsp;&nbsp;&nbsp;
+@Html.ActionLink("Logout", "Logout", "Department")
 <h4>Total Department:@Model.Count</h4>
 <table class="table-bordered">
     <tr>

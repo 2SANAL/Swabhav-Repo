@@ -56,5 +56,10 @@ namespace DepartmentMvcApp.Servies
         {
             _repository.UpdateEmp(editEmployeeViewModel);
         }
+
+        public IQueryable<Employee> GetEmployeesByName(string name)
+        {
+            return _repository.GetEmployeesByName(name);
+        }
     }
 }

@@ -9,7 +9,7 @@ using System.Web;
 
 namespace DepartmentMvcApp.Servies
 {
-    public class DepartmentServies
+    public class DepartmentServies : IDepartmentServies
     {
         private readonly DepartmentRepository _repository = new DepartmentRepository();
         public Department ConvertToDeptObj(AddViewModel addViewModel)

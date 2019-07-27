@@ -19,6 +19,7 @@ namespace DepartmentMvcApp.Model
         [Required]
         public string DeptId { get; set; }
         public List<Department> Departments { get; set; }
+      
 
     }
 }

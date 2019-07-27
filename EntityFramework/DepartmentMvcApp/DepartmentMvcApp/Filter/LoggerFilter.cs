@@ -9,7 +9,7 @@ namespace DepartmentMvcApp.Filter
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            string path = @"E:\SwabhavTech\EntityFramework\DepartmentMvcApp\Logger.txt";
+            string path = @"E:\SwabhavTech\EntityFramework\Logger1.txt";
 
             File.AppendAllText(path, filterContext.ActionDescriptor.ActionName + @" is perform  " +
                                      filterContext.ActionDescriptor.ControllerDescriptor.ControllerName +

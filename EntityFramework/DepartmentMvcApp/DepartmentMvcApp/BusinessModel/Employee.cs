@@ -11,5 +11,6 @@ namespace DepartmentMvcApp.BusinessModel
         public string Job { get; set; }
         public double Comm { get; set; }
         public virtual Department Department { get; set; }
+       
     }
 }

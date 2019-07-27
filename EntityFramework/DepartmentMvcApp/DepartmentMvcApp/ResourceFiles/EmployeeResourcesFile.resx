@@ -150,4 +150,7 @@
   <data name="Dname" xml:space="preserve">
     <value>Department Name</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search Employee By Name</value>
+  </data>
 </root>

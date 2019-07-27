@@ -151,6 +151,15 @@ namespace DepartmentMvcApp.ResourceFiles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search Employee By Name.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee List.
         /// </summary>
         public static string Title {

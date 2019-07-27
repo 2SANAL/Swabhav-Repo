@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using DepartmentMvcApp.BusinessModel;
 using DepartmentMvcApp.Filter;
 using DepartmentMvcApp.Servies;
 using DepartmentMvcApp.Model;
+using DepartmentMvcApp.Repository;
 using PagedList;
-using DepartmentMvcApp.BusinessModel;
 
 namespace DepartmentMvcApp.Controllers
 {
@@ -14,16 +15,17 @@ namespace DepartmentMvcApp.Controllers
         private readonly EmployeeServies _employee;
         private readonly DepartmentServies _department;
         private readonly EmployeeViewModel _employeeViewModel;
-
-
+        private readonly DepartmentRepository _departmentRepository;
+        private int count = 0;
         public EmployeeController()
         {
             _employee = new EmployeeServies();
             _department = new DepartmentServies();
             _employeeViewModel = new EmployeeViewModel();
+            _departmentRepository = new DepartmentRepository();
         }
         // GET: Employee
-        [LoggerFilter]
+
         public ActionResult Index(Guid id)
         {
 
@@ -31,7 +33,7 @@ namespace DepartmentMvcApp.Controllers
             _employeeViewModel.Count = _employeeViewModel.Employees.Count;
             return View(_employeeViewModel);
         }
-        [LoggerFilter]
+
         [HttpGet]
         public ActionResult Add()
         {
@@ -39,41 +41,48 @@ namespace DepartmentMvcApp.Controllers
             addEmployeeViewModel.Departments = _department.GetDepatDepartments().ToList();
             return View(addEmployeeViewModel);
         }
-        [LoggerFilter]
+   
         [HttpPost]
         public ActionResult Add(AddEmployeeViewModel addEmployeeViewModel)
         {
             _employee.AddEmployee(_employee.GetEployeeObj(addEmployeeViewModel));
             return RedirectToAction("EmployeDetails", "Employee");
         }
-        [LoggerFilter]
+   
         [HttpGet]
-        public ActionResult EmployeDetails(int? page)
+        public ActionResult EmployeDetails()
         {
-            int pageSize = 5;
-            int pageIndex = 1;
-            pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
-            IPagedList<Employee> employees = null;
-
             EmployeeViewModel employeeViewModel = new EmployeeViewModel();
-            employeeViewModel.Employees = _employee.GetEmployees().ToList();
+            employeeViewModel.Employees = _departmentRepository.GetOnlye10Emp().OfType<Employee>().ToList();
             employeeViewModel.Count = employeeViewModel.Employees.Count;
-
-            employees = employeeViewModel.Employees.ToPagedList(pageIndex, pageSize);
-            return View(employees);
+            return View(employeeViewModel);
         }
-        [LoggerFilter]
+   
         [HttpGet]
         public ActionResult EditEmployee(Guid id)
         {
             var emp = _employee.GetEmployeeById(id);
             return View(emp);
         }
-        [LoggerFilter]
+
         [HttpPost]
         public ActionResult EditEmployee(EditEmployeeViewModel editEmployeeViewModel)
         {
             _employee.UpdateEmp(editEmployeeViewModel);
+            return RedirectToAction("EmployeDetails", "Employee");
+        }
+
+        [HttpPost]
+        public ActionResult EmployeDetails(FormCollection form)
+        {
+            if (form["txtSearch"] != null)
+            {
+                EmployeeViewModel employeeViewModel = new EmployeeViewModel();
+                employeeViewModel.Employees = _employee.GetEmployeesByName(form["txtSearch"]).ToList();
+                employeeViewModel.Count = employeeViewModel.Employees.Count;
+                return View(employeeViewModel);
+            }
+            Console.WriteLine("");
             return RedirectToAction("EmployeDetails", "Employee");
         }
     }

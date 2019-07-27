@@ -3,10 +3,10 @@
     Layout = null;
 }
 @using DepartmentMvcApp.BusinessModel;
-@using DepartmentMvcApp.Model;
 @using DepartmentMvcApp.ResourceFiles
-@using PagedList.Mvc
-@model PagedList.IPagedList<Employee>
+@using DepartmentMvcApp.Model;
+@model EmployeeViewModel
+
 <!DOCTYPE html>
 
 <html>
@@ -16,8 +16,17 @@
 </head>
 <body>
     <p>Total Employee:@Model.Count</p>
-    <p>@Html.ActionLink("Home", "Index", "Department") &nbsp;&nbsp;&nbsp; @Html.ActionLink("Add", "Add", "Employee")</p>
-
+    <p>
+        @Html.ActionLink("Home", "Index", "Department")
+        &nbsp;&nbsp;&nbsp; @Html.ActionLink("Add", "Add", "Employee")
+    </p>
+    @using (Html.BeginForm("EmployeDetails", "Employee", FormMethod.Post))
+    {
+        <div>
+            @EmployeeResourcesFile.Search:@Html.TextBox("txtSearch") <input type="submit" value="Search">
+            @Html.Hidden("1", "1")
+        </div>
+    }
     <div>
         <table class="tab-content">
             <tr>
@@ -31,48 +40,45 @@
                 <th>@EmployeeResourcesFile.DeptNo</th>
             </tr>
 
-            @for (int i = 0; i < Model.Count; i++)
-            {
-                <tr style="border:1px solid red">
-                    <td>@Model[i].Id</td>
-                    <td>@Model[i].EmployeeName</td>
-                    <td>@Model[i].Job</td>
-                    <td>@Model[i].Salary</td>
-                    <td>@Model[i].Comm</td>
-                    <td>@Model[i].DateOfJoin</td>
-                    <td>11</td>
-                    <td>@Model[i].Department.Id</td>
-                </tr>
-
-            }
-
-
-
-
-
-            @*@foreach (var emp in @Model.Employees)
+            @*@for (int i = 0; i < Model.Count; i++)
                 {
-                    <tr>
-                        <td>@emp.Id</td>
-                        <td>@emp.EmployeeName</td>
-                        <td>@emp.Job</td>
-                        <td>@emp.Salary</td>
-                        <td>@emp.Comm</td>
-                        <td>@emp.DateOfJoin</td>
+                    <tr style="border:1px solid red">
+                        <td>@Model[i].Id</td>
+                        <td>@Model[i].EmployeeName</td>
+                        <td>@Model[i].Job</td>
+                        <td>@Model[i].Salary</td>
+                        <td>@Model[i].Comm</td>
+                        <td>@Model[i].DateOfJoin</td>
                         <td>11</td>
-                        <td>@emp.Department.Id</td>
-                        <td>@Html.ActionLink("Edit", "EditEmployee", "Employee", new { id = @emp.Id }, null)</td>
+                        <td>@Model[i].Department.Id</td>
                     </tr>
+
                 }*@
+
+
+
+
+
+            @foreach (var emp in @Model.Employees)
+            {
+                <tr>
+                    <td>@emp.Id</td>
+                    <td>@emp.EmployeeName</td>
+                    <td>@emp.Job</td>
+                    <td>@emp.Salary</td>
+                    <td>@emp.Comm</td>
+                    <td>@emp.DateOfJoin</td>
+                    <td>11</td>
+                    <td>@emp.Department.Id</td>
+                    <td>@Html.ActionLink("Edit", "EditEmployee", "Employee", new { id = @emp.Id }, null)</td>
+                </tr>
+            }
         </table>
+        <input type="button" value="Next" onclick="location.href = '@Url.Action("EmployeDetails","Employee",new {page=3})'" />
     </div>
     <div id="container" style="margin-left: 20px">
         <p></p>
         <p></p>
-        <div class="pagination" style="margin-left: 400px">
-            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-            of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("EmployeDetails", new { page }))
-        </div>
     </div>
 
 </body>

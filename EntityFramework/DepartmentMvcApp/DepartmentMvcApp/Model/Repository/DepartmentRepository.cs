@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DepartmentMvcApp.BusinessModel;
 using DepartmentMvcApp.Model;
@@ -43,6 +44,20 @@ namespace DepartmentMvcApp.Repository
             return employees;
         }
 
+        public List<Employee> GetOnlye10Emp()
+        {
+            var total = _dbContext.Employees.Select(p => p.Id).Count();
+            var pageSize = 5;
+            var page = 1;
+            var skip = pageSize * (page - 1);
+            var canPage = skip < total;
+            var a = _dbContext.Employees
+                .OrderBy(m=>m.EmployeeName)
+                .Skip(skip)
+                .Take(pageSize).ToList();
+            
+            return a;
+        }
 
         public IQueryable<Employee> GetEmployeesByDeptId(Guid id)
         {
@@ -91,6 +106,12 @@ namespace DepartmentMvcApp.Repository
             {
                 return false;
             }
+        }
+
+        public IQueryable<Employee> GetEmployeesByName(string name)
+        {
+            var emplyees = _dbContext.Employees.Where(m => m.EmployeeName.Equals(name));
+            return emplyees;
         }
     }
 }
