@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{051D6F6C-8E2D-457F-8704-BBCDA6C6FC58}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{C82FCF95-9E50-4125-8FC7-9DC3BEDBC938}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TaskManagment.Core</RootNamespace>
-    <AssemblyName>TaskManagment.Core</AssemblyName>
+    <RootNamespace>TestingConsole</RootNamespace>
+    <AssemblyName>TestingConsole</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -52,25 +54,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessModel\User.cs" />
-    <Compile Include="BusinessModel\UserMapping.cs" />
-    <Compile Include="BusinessModel\UserSubTask.cs" />
-    <Compile Include="BusinessModel\UserSubTaskMapping.cs" />
-    <Compile Include="BusinessModel\UserTask.cs" />
-    <Compile Include="BusinessModel\UserTaskMapping.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\Helper.cs" />
-    <Compile Include="Repository\UserRepository.cs" />
-    <Compile Include="Repository\UserSubTaskRepository.cs" />
-    <Compile Include="Repository\UserTaskRepository.cs" />
-    <Compile Include="Services\UserService.cs" />
-    <Compile Include="Services\UserSubTaskService.cs" />
-    <Compile Include="Services\UserTaskService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TaskManagment.Core\TaskManagment.Core.csproj">
+      <Project>{051d6f6c-8e2d-457f-8704-bbcda6c6fc58}</Project>
+      <Name>TaskManagment.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

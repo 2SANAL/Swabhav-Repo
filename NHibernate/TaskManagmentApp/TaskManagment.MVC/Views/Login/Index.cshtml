@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@using System.Web.UI.WebControls
+@using TaskManagment.MVC.ResourceFile
+@using TaskManagment.MVC.Model;
+@model LoginViewModel
+<center>
+    <h2>@LoginResource.LoginTitle</h2>
+    <p>@LoginResource.UserId:@Html.TextBoxFor(m => m.UserId)</p>
+    <p>@LoginResource.Password:@Html.PasswordFor(m => m.Password)</p>
+    <p style="color: red">@Model.Message</p>
+    <p><input type="submit" value="Login" /></p>
+    <p>@Html.ActionLink("forgot password", "ForgotPassword", "Login")</p>
+    <p>@Html.ActionLink("Please registration if not registration", "Registration", "Login")</p>
+</center>
